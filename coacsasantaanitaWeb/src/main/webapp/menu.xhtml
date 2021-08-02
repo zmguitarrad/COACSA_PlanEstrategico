@@ -58,18 +58,31 @@
 					<h:outputText value="#{actividad.personalApoyo}" />
 				</p:column>
 				<p:column headerText="OPCIONES">
-					<p:commandButton icon="pi pi-check-circle"
-						title="activar/desactivar" styleClass="ui-button-warning"
-						update="@form"
-						actionListener="#{beanProdProducto.actionListenerActivarDesactivarProducto(producto.codigoProdProduct)}" />
-					<p:commandButton icon="pi pi-pencil" title="editar"
-						action="#{beanProdProducto.actionSeleccionarEdicionProducto(producto)}" />	
-					<p:commandButton icon="pi pi-times-circle" title="eliminar"
-						styleClass="ui-button-danger" update="@form"
-						actionListener="#{beanProdProducto.actionListenerEliminarProducto(producto.codigoProdProduct)}">
-						<p:confirm header="Confirmación"
-							message="Desea borrar este producto?" icon="pi pi-info-circle" />
-					</p:commandButton>
+
+				<p:column headerText="Detalle de Actividad">
+					<p:commandButton icon="pi pi-search" title="reporte"
+						id="cmdReporte" />
+					<p:overlayPanel for="cmdReporte" showCloseIcon="true"
+						style="width:350px">
+
+						<p:dataTable value="#{beanPoa.listaPoa}" var="poa">
+							<p:column headerText="Mes">
+								<h:outputText value="#{poa.calendario.mes}" />
+							</p:column>
+							<p:column headerText="Estado">
+								<h:outputText value="#{poa.estado.nombreEstado}" />
+							</p:column>
+							<p:column headerText="Entregable">
+								<h:outputText value="#{poa.entregable}" />
+							</p:column>
+							<p:column headerText="Observaciones">
+								<h:outputText value="#{poa.observaciones}" />
+							</p:column>
+							
+						</p:dataTable>
+
+					</p:overlayPanel>
+				</p:column>
 				</p:column>
 			</p:dataTable>
 		</h:form>
