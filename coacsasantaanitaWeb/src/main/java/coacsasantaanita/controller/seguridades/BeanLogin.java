@@ -28,7 +28,7 @@ public class BeanLogin implements Serializable {
 	private ManagerSeguridades mSeguridades;
 
 	public BeanLogin() {
-		// TODO Auto-generated constructor stub
+
 	}
 	@PostConstruct
 	public void inicializar() {
@@ -45,7 +45,7 @@ public class BeanLogin implements Serializable {
 		try {
 			loginDTO=mSeguridades.login(idUsuario, clave, direccionIP);
 			//loginDTO.setDireccionIP(direccionIP);
-			return "menu?faces-redirect=true";
+			return "menu";
 		} catch (Exception e) {
 			JSFUtil.crearMensajeERROR(e.getMessage());
 			e.printStackTrace();

@@ -1,48 +1,85 @@
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
+<f:metadata>
+	
+</f:metadata>
 <h:head>
-	<title>Menu principal</title>
+	<title>Actividad</title>
 </h:head>
 <body>
+	<p:growl>
+		<p:autoUpdate />
+	</p:growl>
 	<h:form>
 		<p:menubar>
+			<p:menuitem value="Regresar" icon="pi pi-home" action="login" />
+			<p:menuitem value="Nuevo producto" icon="pi pi-briefcase"
+				action="#{beanProdProducto.actionMenuNuevoProducto()}" />
 			<f:facet name="options">
 				<p:menuButton value="#{beanLogin.loginDTO.correo}"
 					icon="pi pi-user">
-					<p:menuitem value="Perfil"></p:menuitem>
+					<p:menuitem value="Perfil" icon="pi pi-cog"></p:menuitem>
 					<p:menuitem value="Cerrar sesión" icon="pi pi-sign-out"
 						action="#{beanLogin.actionCerrarSesion()}"></p:menuitem>
 				</p:menuButton>
 			</f:facet>
 		</p:menubar>
 	</h:form>
-
-	<div align="center">
+	<p:panel header="Lista de Actividades">
 		<h:form>
-			<p:panel style="width:50%">
-				<p:staticMessage severity="info" summary="SISTEMA MINIMARKETDEMO"
-					style="width: 100%" />
-				<p:dataView value="#{beanSegLogin.loginDTO.listaModulos}"
-					var="modulo" layout="grid" gridIcon="pi pi-th-large"
-					emptyMessage="No tiene módulos asignados. Consulte al administrador.">
-					<p:dataViewGridItem>
-						<p:commandLink
-							action="#{beanSegLogin.actionMenu(modulo.rutaAcceso)}">
-							<p:panelGrid columns="1">
-								<h:outputText value="#{modulo.nombreModulo}" />
-								<h:outputText value="#{modulo.rutaAcceso}" />
-								<i class="pi pi-slack" style="font-size: 2rem"></i>
-							</p:panelGrid>
-						</p:commandLink>
-					</p:dataViewGridItem>
-				</p:dataView>
-			</p:panel>
+			<p:dataTable value="#{beanActividades.listaActividades}" var="actividad"
+				paginator="true" rows="5">
+				<p:column headerText="Id">
+					<h:outputText value="#{actividad.secuencial}" />
+				</p:column>
+				<p:column headerText="Secuencial Objetivo" filterBy="#{actividad.objetivoPerspectiva}"
+					filterMatchMode="contains">
+					<h:outputText value="#{actividad.objetivoPerspectiva.nombreObjetivo}" />
+				</p:column>
+				<p:column headerText="Secuencial Indicadores" filterBy="#{actividad.indicadore}"
+					filterMatchMode="contains">
+					<h:outputText value="#{actividad.indicadore.nombreIndicador}" />
+				</p:column>
+				<p:column headerText="Usuario" filterBy="#{actividad.usuario}"
+					filterMatchMode="contains">
+					<h:outputText value="#{actividad.usuario.idUsuario}" />
+				</p:column>
+				<p:column headerText="Nombre Actividad" filterBy="#{actividad.nombreActividad}"
+					filterMatchMode="contains">
+					<h:outputText value="#{actividad.nombreActividad}" />
+				</p:column>
+				<p:column headerText="Personal de Apoyo" filterBy="#{actividad.personalApoyo}"
+					filterMatchMode="contains">
+					<h:outputText value="#{actividad.personalApoyo}" />
+				</p:column>
+				<p:column headerText="OPCIONES">
+					<p:commandButton icon="pi pi-check-circle"
+						title="activar/desactivar" styleClass="ui-button-warning"
+						update="@form"
+						actionListener="#{beanProdProducto.actionListenerActivarDesactivarProducto(producto.codigoProdProduct)}" />
+					<p:commandButton icon="pi pi-pencil" title="editar"
+						action="#{beanProdProducto.actionSeleccionarEdicionProducto(producto)}" />	
+					<p:commandButton icon="pi pi-times-circle" title="eliminar"
+						styleClass="ui-button-danger" update="@form"
+						actionListener="#{beanProdProducto.actionListenerEliminarProducto(producto.codigoProdProduct)}">
+						<p:confirm header="Confirmación"
+							message="Desea borrar este producto?" icon="pi pi-info-circle" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
 		</h:form>
-	</div>
+	</p:panel>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true" width="350">
+		<p:commandButton value="No" type="button"
+			styleClass="ui-confirmdialog-no ui-button-flat" />
+		<p:commandButton value="Sí" type="button"
+			styleClass="ui-confirmdialog-yes" />
+	</p:confirmDialog>
 </body>
 </html>
