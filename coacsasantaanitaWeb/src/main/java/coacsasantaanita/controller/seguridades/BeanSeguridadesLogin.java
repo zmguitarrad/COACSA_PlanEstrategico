@@ -12,12 +12,13 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import coacasantaanita.model.seguridades.dtos.LoginDTO;
+import coacsantaanita.model.core.entities.SeguridadesRole;
 import coacsantaanita.model.seguridades.manager.ManagerSeguridades;
 import coacsasantaanita.controller.JSFUtil;
 
 @Named
 @SessionScoped
-public class BeanLogin implements Serializable {
+public class BeanSeguridadesLogin implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String idUsuario;
 	private String clave;
@@ -27,7 +28,7 @@ public class BeanLogin implements Serializable {
 	@EJB
 	private ManagerSeguridades mSeguridades;
 
-	public BeanLogin() {
+	public BeanSeguridadesLogin() {
 
 	}
 	@PostConstruct
@@ -54,7 +55,10 @@ public class BeanLogin implements Serializable {
 	}
 	
 	public String actionMenu(String ruta) {
-		return ruta+"?faces-redirect=true";
+		return "menu"+"?faces-redirect=true";
+	}
+	public String actionActividades() {
+		return "actividades";
 	}
 	
 	public String actionCerrarSesion(){
@@ -79,10 +83,40 @@ public class BeanLogin implements Serializable {
 			}
 			return;
 		}
-		
-	}
-	
-	
+		//Extraemos la parte inicial de la ruta a la que se esta accediendo:
+				String rutaUsuario=requestPath.substring(1);
+				rutaUsuario=rutaUsuario.substring(0, rutaUsuario.indexOf("/"));
+				//validacion de la ruta de acceso:
+				boolean verificado=false;
+				for(SeguridadesRole rol:loginDTO.getListaroles()) {
+					//extraemos el inicio de la ruta (nombre de la carpeta):
+					String rutaModulo=rol.getRutaAcceso();
+					rutaModulo=rutaModulo.substring(0,rutaModulo.indexOf("/"));
+					//verificamos con la ruta a la que se está accediendo:
+					if(rutaUsuario.equals(rutaModulo)){
+						verificado=true;
+						break;
+					}
+				}
+				try {
+					if(verificado==false) {
+						mSeguridades.accesoNoPermitido(loginDTO.getIdUsuario(), requestPath);
+						ec.redirect(ec.getRequestContextPath()+"/faces/login.xhtml");
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			
+			public void actionListenerInicialiar() {
+				try {
+					mSeguridades.inicializarDemo();;
+				} catch (Exception e) {
+					JSFUtil.crearMensajeERROR(e.getMessage());
+					e.printStackTrace();
+				}
+			}
+
 
 	public String getIdUsuario() {
 		return idUsuario;

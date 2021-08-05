@@ -17,11 +17,11 @@
 			<p:panel>
 				<p:panelGrid columns="2">
 					<h:outputText value="Id de usuario:" />
-					<p:inputText value="#{beanLogin.idUsuario}" />
+					<p:inputText value="#{beanSeguridadesLogin.idUsuario}" />
 					<h:outputText value="Clave:" />
-					<p:password value="#{beanLogin.clave}" />
+					<p:password value="#{beanSeguridadesLogin.clave}" />
 					<p:commandButton value="Login"
-						action="#{beanLogin.actionLogin()}" icon="pi pi-key"></p:commandButton>
+						action="#{beanSeguridadesLogin.actionLogin()}" icon="pi pi-key"></p:commandButton>
 				</p:panelGrid>
 			</p:panel>
 		</h:form>

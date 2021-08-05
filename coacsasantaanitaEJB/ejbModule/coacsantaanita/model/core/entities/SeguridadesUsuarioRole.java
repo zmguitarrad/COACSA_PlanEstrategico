@@ -17,12 +17,14 @@ public class SeguridadesUsuarioRole implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
-
-	@Column(name="id_usuario")
-	private String idUsuario;
-
-	@Column(name="secuencial_roles")
-	private Integer secuencialRoles;
+	
+	@ManyToOne
+	@JoinColumn(name="id_usuario")
+	private SeguridadesUsuario seguridadesUsuario;
+	
+	@ManyToOne
+	@JoinColumn(name="secuencial_roles")
+	private SeguridadesRole seguridadesRoles;
 
 	public SeguridadesUsuarioRole() {
 	}
@@ -35,20 +37,23 @@ public class SeguridadesUsuarioRole implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public String getIdUsuario() {
-		return this.idUsuario;
+	
+	public SeguridadesUsuario getSeguridadesUsuario() {
+		return seguridadesUsuario;
 	}
 
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setSeguridadesUsuario(SeguridadesUsuario seguridadesUsuario) {
+		this.seguridadesUsuario = seguridadesUsuario;
 	}
 
-	public Integer getSecuencialRoles() {
-		return this.secuencialRoles;
+	public SeguridadesRole getSeguridadesRoles() {
+		return seguridadesRoles;
 	}
 
-	public void setSecuencialRoles(Integer secuencialRoles) {
-		this.secuencialRoles = secuencialRoles;
+	public void setSeguridadesRoles(SeguridadesRole seguridadesRoles) {
+		this.seguridadesRoles = seguridadesRoles;
 	}
+
+	
 
 }

@@ -1,6 +1,8 @@
 package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -31,6 +33,9 @@ public class SeguridadesUsuario implements Serializable {
 	private String nombres;
 
 	private Integer secuencial;
+	
+	@OneToMany(mappedBy="seguridadesUsuario")
+	private List<SeguridadesUsuarioRole> seguridadesUsuarioRole;
 
 	public SeguridadesUsuario() {
 	}
@@ -98,5 +103,27 @@ public class SeguridadesUsuario implements Serializable {
 	public void setSecuencial(Integer secuencial) {
 		this.secuencial = secuencial;
 	}
+
+	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRole() {
+		return seguridadesUsuarioRole;
+	}
+
+	public void setSeguridadesUsuarioRole(List<SeguridadesUsuarioRole> seguridadesUsuarioRole) {
+		this.seguridadesUsuarioRole = seguridadesUsuarioRole;
+	}
+	
+	public SeguridadesUsuarioRole addSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
+		getSeguridadesUsuarioRole().add(seguridadesUsuarioRole);
+		seguridadesUsuarioRole.setSeguridadesUsuario(this);
+
+		return seguridadesUsuarioRole;
+	}
+
+	public SeguridadesUsuarioRole removeSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
+		getSeguridadesUsuarioRole().remove(seguridadesUsuarioRole);
+		seguridadesUsuarioRole.setSeguridadesUsuario(null);
+		return seguridadesUsuarioRole;
+	}
+	
 
 }
