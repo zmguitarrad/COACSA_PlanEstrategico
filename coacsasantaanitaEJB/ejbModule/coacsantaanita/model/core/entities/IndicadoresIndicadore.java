@@ -2,6 +2,7 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -25,6 +26,10 @@ public class IndicadoresIndicadore implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="secuencial_objetivo_perspectiva")
 	private ProcesoObjetivoPerspectiva procesoObjetivoPerspectiva;
+
+	//bi-directional many-to-one association to ProcesoActividad
+	@OneToMany(mappedBy="indicadoresIndicadore")
+	private List<ProcesoActividad> procesoActividads;
 
 	public IndicadoresIndicadore() {
 	}
@@ -51,6 +56,28 @@ public class IndicadoresIndicadore implements Serializable {
 
 	public void setProcesoObjetivoPerspectiva(ProcesoObjetivoPerspectiva procesoObjetivoPerspectiva) {
 		this.procesoObjetivoPerspectiva = procesoObjetivoPerspectiva;
+	}
+
+	public List<ProcesoActividad> getProcesoActividads() {
+		return this.procesoActividads;
+	}
+
+	public void setProcesoActividads(List<ProcesoActividad> procesoActividads) {
+		this.procesoActividads = procesoActividads;
+	}
+
+	public ProcesoActividad addProcesoActividad(ProcesoActividad procesoActividad) {
+		getProcesoActividads().add(procesoActividad);
+		procesoActividad.setIndicadoresIndicadore(this);
+
+		return procesoActividad;
+	}
+
+	public ProcesoActividad removeProcesoActividad(ProcesoActividad procesoActividad) {
+		getProcesoActividads().remove(procesoActividad);
+		procesoActividad.setIndicadoresIndicadore(null);
+
+		return procesoActividad;
 	}
 
 }

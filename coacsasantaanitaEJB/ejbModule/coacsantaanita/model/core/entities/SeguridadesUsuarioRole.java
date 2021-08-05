@@ -2,6 +2,7 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -17,14 +18,20 @@ public class SeguridadesUsuarioRole implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
-	
+
+	//bi-directional many-to-one association to ProcesoActividad
+	@OneToMany(mappedBy="seguridadesUsuarioRole")
+	private List<ProcesoActividad> procesoActividads;
+
+	//bi-directional many-to-one association to SeguridadesRole
+	@ManyToOne
+	@JoinColumn(name="secuencial_roles")
+	private SeguridadesRole seguridadesRole;
+
+	//bi-directional many-to-one association to SeguridadesUsuario
 	@ManyToOne
 	@JoinColumn(name="id_usuario")
 	private SeguridadesUsuario seguridadesUsuario;
-	
-	@ManyToOne
-	@JoinColumn(name="secuencial_roles")
-	private SeguridadesRole seguridadesRoles;
 
 	public SeguridadesUsuarioRole() {
 	}
@@ -37,23 +44,42 @@ public class SeguridadesUsuarioRole implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	
+	public List<ProcesoActividad> getProcesoActividads() {
+		return this.procesoActividads;
+	}
+
+	public void setProcesoActividads(List<ProcesoActividad> procesoActividads) {
+		this.procesoActividads = procesoActividads;
+	}
+
+	public ProcesoActividad addProcesoActividad(ProcesoActividad procesoActividad) {
+		getProcesoActividads().add(procesoActividad);
+		procesoActividad.setSeguridadesUsuarioRole(this);
+
+		return procesoActividad;
+	}
+
+	public ProcesoActividad removeProcesoActividad(ProcesoActividad procesoActividad) {
+		getProcesoActividads().remove(procesoActividad);
+		procesoActividad.setSeguridadesUsuarioRole(null);
+
+		return procesoActividad;
+	}
+
+	public SeguridadesRole getSeguridadesRole() {
+		return this.seguridadesRole;
+	}
+
+	public void setSeguridadesRole(SeguridadesRole seguridadesRole) {
+		this.seguridadesRole = seguridadesRole;
+	}
+
 	public SeguridadesUsuario getSeguridadesUsuario() {
-		return seguridadesUsuario;
+		return this.seguridadesUsuario;
 	}
 
 	public void setSeguridadesUsuario(SeguridadesUsuario seguridadesUsuario) {
 		this.seguridadesUsuario = seguridadesUsuario;
 	}
-
-	public SeguridadesRole getSeguridadesRoles() {
-		return seguridadesRoles;
-	}
-
-	public void setSeguridadesRoles(SeguridadesRole seguridadesRoles) {
-		this.seguridadesRoles = seguridadesRoles;
-	}
-
-	
 
 }

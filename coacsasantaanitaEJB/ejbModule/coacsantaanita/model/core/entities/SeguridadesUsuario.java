@@ -1,9 +1,8 @@
 package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -33,9 +32,10 @@ public class SeguridadesUsuario implements Serializable {
 	private String nombres;
 
 	private Integer secuencial;
-	
+
+	//bi-directional many-to-one association to SeguridadesUsuarioRole
 	@OneToMany(mappedBy="seguridadesUsuario")
-	private List<SeguridadesUsuarioRole> seguridadesUsuarioRole;
+	private List<SeguridadesUsuarioRole> seguridadesUsuarioRoles;
 
 	public SeguridadesUsuario() {
 	}
@@ -104,26 +104,26 @@ public class SeguridadesUsuario implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRole() {
-		return seguridadesUsuarioRole;
+	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRoles() {
+		return this.seguridadesUsuarioRoles;
 	}
 
-	public void setSeguridadesUsuarioRole(List<SeguridadesUsuarioRole> seguridadesUsuarioRole) {
-		this.seguridadesUsuarioRole = seguridadesUsuarioRole;
+	public void setSeguridadesUsuarioRoles(List<SeguridadesUsuarioRole> seguridadesUsuarioRoles) {
+		this.seguridadesUsuarioRoles = seguridadesUsuarioRoles;
 	}
-	
+
 	public SeguridadesUsuarioRole addSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
-		getSeguridadesUsuarioRole().add(seguridadesUsuarioRole);
+		getSeguridadesUsuarioRoles().add(seguridadesUsuarioRole);
 		seguridadesUsuarioRole.setSeguridadesUsuario(this);
 
 		return seguridadesUsuarioRole;
 	}
 
 	public SeguridadesUsuarioRole removeSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
-		getSeguridadesUsuarioRole().remove(seguridadesUsuarioRole);
+		getSeguridadesUsuarioRoles().remove(seguridadesUsuarioRole);
 		seguridadesUsuarioRole.setSeguridadesUsuario(null);
+
 		return seguridadesUsuarioRole;
 	}
-	
 
 }

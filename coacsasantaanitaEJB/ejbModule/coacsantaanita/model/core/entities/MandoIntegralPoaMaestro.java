@@ -18,9 +18,6 @@ public class MandoIntegralPoaMaestro implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
 
-	@Column(name="secuencial_plan_estrategico")
-	private Integer secuencialPlanEstrategico;
-
 	//bi-directional many-to-one association to GeneralesEstado
 	@ManyToOne
 	@JoinColumn(name="secuencial_estado")
@@ -30,6 +27,11 @@ public class MandoIntegralPoaMaestro implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="secuencial_meses")
 	private GeneralesMes generalesMes;
+
+	//bi-directional many-to-one association to MandoIntegralPlanEstrategico
+	@ManyToOne
+	@JoinColumn(name="secuencial_plan_estrategico")
+	private MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico;
 
 	//bi-directional many-to-one association to ProcesoActividad
 	@ManyToOne
@@ -47,14 +49,6 @@ public class MandoIntegralPoaMaestro implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public Integer getSecuencialPlanEstrategico() {
-		return this.secuencialPlanEstrategico;
-	}
-
-	public void setSecuencialPlanEstrategico(Integer secuencialPlanEstrategico) {
-		this.secuencialPlanEstrategico = secuencialPlanEstrategico;
-	}
-
 	public GeneralesEstado getGeneralesEstado() {
 		return this.generalesEstado;
 	}
@@ -69,6 +63,14 @@ public class MandoIntegralPoaMaestro implements Serializable {
 
 	public void setGeneralesMes(GeneralesMes generalesMes) {
 		this.generalesMes = generalesMes;
+	}
+
+	public MandoIntegralPlanEstrategico getMandoIntegralPlanEstrategico() {
+		return this.mandoIntegralPlanEstrategico;
+	}
+
+	public void setMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
+		this.mandoIntegralPlanEstrategico = mandoIntegralPlanEstrategico;
 	}
 
 	public ProcesoActividad getProcesoActividad() {

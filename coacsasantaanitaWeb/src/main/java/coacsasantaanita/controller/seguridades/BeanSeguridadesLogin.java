@@ -60,6 +60,9 @@ public class BeanSeguridadesLogin implements Serializable {
 	public String actionActividades() {
 		return "actividades";
 	}
+	public String actionPoa() {
+		return "POA";
+	}
 	
 	public String actionCerrarSesion(){
 		mSeguridades.cerrarSesion(loginDTO.getIdUsuario());

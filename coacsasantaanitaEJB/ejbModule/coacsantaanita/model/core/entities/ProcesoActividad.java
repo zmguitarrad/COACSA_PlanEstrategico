@@ -29,15 +29,19 @@ public class ProcesoActividad implements Serializable {
 	@Column(name="personal_apoyo")
 	private String personalApoyo;
 
-	@Column(name="secuencial_indicador")
-	private Integer secuencialIndicador;
-
-	@Column(name="secuencial_usuario_roles")
-	private Integer secuencialUsuarioRoles;
-
 	//bi-directional many-to-one association to MandoIntegralPoaMaestro
 	@OneToMany(mappedBy="procesoActividad")
 	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
+
+	//bi-directional many-to-one association to IndicadoresIndicadore
+	@ManyToOne
+	@JoinColumn(name="secuencial_indicador")
+	private IndicadoresIndicadore indicadoresIndicadore;
+
+	//bi-directional many-to-one association to SeguridadesUsuarioRole
+	@ManyToOne
+	@JoinColumn(name="secuencial_usuario_roles")
+	private SeguridadesUsuarioRole seguridadesUsuarioRole;
 
 	public ProcesoActividad() {
 	}
@@ -82,22 +86,6 @@ public class ProcesoActividad implements Serializable {
 		this.personalApoyo = personalApoyo;
 	}
 
-	public Integer getSecuencialIndicador() {
-		return this.secuencialIndicador;
-	}
-
-	public void setSecuencialIndicador(Integer secuencialIndicador) {
-		this.secuencialIndicador = secuencialIndicador;
-	}
-
-	public Integer getSecuencialUsuarioRoles() {
-		return this.secuencialUsuarioRoles;
-	}
-
-	public void setSecuencialUsuarioRoles(Integer secuencialUsuarioRoles) {
-		this.secuencialUsuarioRoles = secuencialUsuarioRoles;
-	}
-
 	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
 		return this.mandoIntegralPoaMaestros;
 	}
@@ -118,6 +106,22 @@ public class ProcesoActividad implements Serializable {
 		mandoIntegralPoaMaestro.setProcesoActividad(null);
 
 		return mandoIntegralPoaMaestro;
+	}
+
+	public IndicadoresIndicadore getIndicadoresIndicadore() {
+		return this.indicadoresIndicadore;
+	}
+
+	public void setIndicadoresIndicadore(IndicadoresIndicadore indicadoresIndicadore) {
+		this.indicadoresIndicadore = indicadoresIndicadore;
+	}
+
+	public SeguridadesUsuarioRole getSeguridadesUsuarioRole() {
+		return this.seguridadesUsuarioRole;
+	}
+
+	public void setSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
+		this.seguridadesUsuarioRole = seguridadesUsuarioRole;
 	}
 
 }

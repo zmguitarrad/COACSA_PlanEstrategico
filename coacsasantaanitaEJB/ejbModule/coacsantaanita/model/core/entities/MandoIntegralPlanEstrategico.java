@@ -2,6 +2,7 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -28,6 +29,14 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 	@JoinColumn(name="secuencial_detalle_plan")
 	private MandoIntegralDetallePlan mandoIntegralDetallePlan;
 
+	//bi-directional many-to-one association to MandoIntegralPoaMaestro
+	@OneToMany(mappedBy="mandoIntegralPlanEstrategico")
+	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
+
+	//bi-directional many-to-one association to ProcesoPerspectiva
+	@OneToMany(mappedBy="mandoIntegralPlanEstrategico")
+	private List<ProcesoPerspectiva> procesoPerspectivas;
+
 	public MandoIntegralPlanEstrategico() {
 	}
 
@@ -53,6 +62,50 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 
 	public void setMandoIntegralDetallePlan(MandoIntegralDetallePlan mandoIntegralDetallePlan) {
 		this.mandoIntegralDetallePlan = mandoIntegralDetallePlan;
+	}
+
+	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
+		return this.mandoIntegralPoaMaestros;
+	}
+
+	public void setMandoIntegralPoaMaestros(List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros) {
+		this.mandoIntegralPoaMaestros = mandoIntegralPoaMaestros;
+	}
+
+	public MandoIntegralPoaMaestro addMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().add(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setMandoIntegralPlanEstrategico(this);
+
+		return mandoIntegralPoaMaestro;
+	}
+
+	public MandoIntegralPoaMaestro removeMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().remove(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setMandoIntegralPlanEstrategico(null);
+
+		return mandoIntegralPoaMaestro;
+	}
+
+	public List<ProcesoPerspectiva> getProcesoPerspectivas() {
+		return this.procesoPerspectivas;
+	}
+
+	public void setProcesoPerspectivas(List<ProcesoPerspectiva> procesoPerspectivas) {
+		this.procesoPerspectivas = procesoPerspectivas;
+	}
+
+	public ProcesoPerspectiva addProcesoPerspectiva(ProcesoPerspectiva procesoPerspectiva) {
+		getProcesoPerspectivas().add(procesoPerspectiva);
+		procesoPerspectiva.setMandoIntegralPlanEstrategico(this);
+
+		return procesoPerspectiva;
+	}
+
+	public ProcesoPerspectiva removeProcesoPerspectiva(ProcesoPerspectiva procesoPerspectiva) {
+		getProcesoPerspectivas().remove(procesoPerspectiva);
+		procesoPerspectiva.setMandoIntegralPlanEstrategico(null);
+
+		return procesoPerspectiva;
 	}
 
 }

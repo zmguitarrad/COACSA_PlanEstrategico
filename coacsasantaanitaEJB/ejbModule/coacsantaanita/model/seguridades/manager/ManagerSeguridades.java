@@ -154,7 +154,7 @@ public class ManagerSeguridades {
     	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, idSegUsuario);
     	if(usuario.getIdUsuario()=="Admin")
     		throw new Exception("No se puede eliminar el usuario administrador.");
-    	if(usuario.getSeguridadesUsuarioRole().size()>0)
+    	if(usuario.getSeguridadesUsuarioRoles().size()>0)
     		throw new Exception("No se puede elimininar el usuario porque tiene asignaciones de módulos.");
     	mDAO.eliminar(SeguridadesUsuario.class, usuario.getIdUsuario());
     }
@@ -200,7 +200,7 @@ public class ManagerSeguridades {
     	SeguridadesRole rol=(SeguridadesRole)mDAO.findById(SeguridadesRole.class, idSegRol);
     	//crear la relacion:
     	SeguridadesUsuarioRole asignacion=new SeguridadesUsuarioRole();
-    	asignacion.setSeguridadesRoles(rol);
+    	asignacion.setSeguridadesRole(rol);
     	asignacion.setSeguridadesUsuario(usuario);
     	//guardar la asignacion:
     	mDAO.insertar(asignacion);

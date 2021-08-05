@@ -2,6 +2,7 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -23,6 +24,10 @@ public class SeguridadesRole implements Serializable {
 
 	@Column(name="ruta_acceso")
 	private String rutaAcceso;
+
+	//bi-directional many-to-one association to SeguridadesUsuarioRole
+	@OneToMany(mappedBy="seguridadesRole")
+	private List<SeguridadesUsuarioRole> seguridadesUsuarioRoles;
 
 	public SeguridadesRole() {
 	}
@@ -49,6 +54,28 @@ public class SeguridadesRole implements Serializable {
 
 	public void setRutaAcceso(String rutaAcceso) {
 		this.rutaAcceso = rutaAcceso;
+	}
+
+	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRoles() {
+		return this.seguridadesUsuarioRoles;
+	}
+
+	public void setSeguridadesUsuarioRoles(List<SeguridadesUsuarioRole> seguridadesUsuarioRoles) {
+		this.seguridadesUsuarioRoles = seguridadesUsuarioRoles;
+	}
+
+	public SeguridadesUsuarioRole addSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
+		getSeguridadesUsuarioRoles().add(seguridadesUsuarioRole);
+		seguridadesUsuarioRole.setSeguridadesRole(this);
+
+		return seguridadesUsuarioRole;
+	}
+
+	public SeguridadesUsuarioRole removeSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
+		getSeguridadesUsuarioRoles().remove(seguridadesUsuarioRole);
+		seguridadesUsuarioRole.setSeguridadesRole(null);
+
+		return seguridadesUsuarioRole;
 	}
 
 }
