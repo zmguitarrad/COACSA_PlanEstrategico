@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 import coacasantaanita.model.seguridades.dtos.LoginDTO;
-import coacsantaanita.model.core.entities.AudBitacora;
+import coacsantaanita.model.core.entities.AuditoriaBitacora;
 import coacsasantaanita.model.core.managers.ManagerDAO;
 
 
@@ -38,7 +38,7 @@ public class ManagerAuditoria {
     public void mostrarLog(Class clase,String nombreMetodo,String mensaje) {
     	SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	System.out.println(format.format(new Date())+"["+clase.getSimpleName()+"/"+nombreMetodo+"]: "+mensaje);
-    	AudBitacora pista=new AudBitacora();
+    	AuditoriaBitacora pista=new AuditoriaBitacora();
     	pista.setDescripcionEvento(mensaje);
     	pista.setDireccionIp("localhost");
     	Timestamp tiempo=new Timestamp(System.currentTimeMillis());
@@ -64,7 +64,7 @@ public class ManagerAuditoria {
     	System.out.println(format.format(new Date())+" ["+
 				loginDTO.getIdUsuario()+"@"+
 				loginDTO.getDireccionIP()+":"+clase.getSimpleName()+"/"+nombreMetodo+"]: "+mensaje);
-    	AudBitacora pista=new AudBitacora();
+    	AuditoriaBitacora pista=new AuditoriaBitacora();
     	pista.setDescripcionEvento(mensaje);
     	pista.setDireccionIp(loginDTO.getDireccionIP());
     	Timestamp tiempo=new Timestamp(System.currentTimeMillis());
@@ -79,12 +79,12 @@ public class ManagerAuditoria {
 		}
     }
     
-    public List<AudBitacora> findBitacoraByFecha(Date fechaInicio,Date fechaFin){
+    public List<AuditoriaBitacora> findBitacoraByFecha(Date fechaInicio,Date fechaFin){
     	SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     	System.out.println("fecha inicio: "+format.format(fechaInicio));
     	System.out.println("fecha fin: "+format.format(fechaFin));
     	String consulta="select b from AudBitacora b where b.fechaEvento between :fechaInicio and :fechaFin order by b.fechaEvento";
-    	Query q=mDAO.getEntityManager().createQuery(consulta, AudBitacora.class);
+    	Query q=mDAO.getEntityManager().createQuery(consulta, AuditoriaBitacora.class);
     	q.setParameter("fechaInicio", new Timestamp(fechaInicio.getTime()));
     	q.setParameter("fechaFin", new Timestamp(fechaFin.getTime()));
     	return q.getResultList();

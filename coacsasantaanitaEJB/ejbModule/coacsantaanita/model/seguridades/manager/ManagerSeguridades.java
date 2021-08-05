@@ -8,7 +8,7 @@ import javax.ejb.Stateless;
 
 import coacasantaanita.model.seguridades.dtos.LoginDTO;
 import coacsantaanita.model.auditoria.managers.ManagerAuditoria;
-import coacsantaanita.model.core.entities.Usuario;
+import coacsantaanita.model.core.entities.SeguridadesUsuario;
 import coacsasantaanita.model.core.managers.ManagerDAO;
 import coacsasantaanita.model.core.utils.ModelUtil;
 
@@ -50,10 +50,10 @@ public class ManagerSeguridades {
 		loginDTO.setDireccionIP(direccionIP);
 		
     	if(ModelUtil.isEmpty(clave)) {
-    		mAuditoria.mostrarLog(getClass(), "login", "Debe indicar una clave "+idUsuario);
+    		mAuditoria.mostrarLog(getClass(), "login", "Debe indicar una clave y usuario "+idUsuario);
     		throw new Exception("Debe indicar una clave");
     	}
-    	Usuario usuario=(Usuario) mDAO.findById(Usuario.class, idUsuario);
+    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, idUsuario);
     	if(usuario==null) {
     		mAuditoria.mostrarLog(getClass(), "login", "No existe usuario "+idUsuario);
     		throw new Exception("Error en credenciales.");
@@ -82,17 +82,17 @@ public class ManagerSeguridades {
     	mAuditoria.mostrarLog(getClass(), "accesoNoPermitido", "Usuario "+idUsuario+" intento no autorizado a "+ruta);
     }
     
-    public List<Usuario> findAllUsuarios(){
-    	return mDAO.findAll(Usuario.class, "apellidos");
+    public List<SeguridadesUsuario> findAllUsuarios(){
+    	return mDAO.findAll(SeguridadesUsuario.class, "apellidos");
     }
     
-    public Usuario findByIdSegUsuario(String idUsuario) throws Exception {
-    	return (Usuario) mDAO.findById(Usuario.class, "idUsuario");
+    public SeguridadesUsuario findByIdSegUsuario(String idUsuario) throws Exception {
+    	return (SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, "idUsuario");
     }
     
     
-    public Usuario insertarUsuario(Usuario nuevoUsuario) throws Exception {
-    	Usuario usuario=new Usuario();
+    public SeguridadesUsuario insertarUsuario(SeguridadesUsuario nuevoUsuario) throws Exception {
+    	SeguridadesUsuario usuario=new SeguridadesUsuario();
     	usuario.setIdUsuario(nuevoUsuario.getIdUsuario());
     	usuario.setCedula(nuevoUsuario.getCedula());
     	usuario.setApellidos(nuevoUsuario.getApellidos());
@@ -104,8 +104,8 @@ public class ManagerSeguridades {
     	return usuario;
     }
     
-    public void actualizarUsuario(LoginDTO loginDTO,Usuario edicionUsuario) throws Exception {
-    	Usuario usuario=(Usuario) mDAO.findById(Usuario.class, edicionUsuario.getIdUsuario());
+    public void actualizarUsuario(LoginDTO loginDTO,SeguridadesUsuario edicionUsuario) throws Exception {
+    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, edicionUsuario.getIdUsuario());
     	usuario.setApellidos(edicionUsuario.getApellidos());
     	usuario.setClave(edicionUsuario.getClave());
     	usuario.setCorreo(edicionUsuario.getCorreo());
@@ -116,8 +116,8 @@ public class ManagerSeguridades {
     }
     
     public void activarDesactivarUsuario(String idUsuario) throws Exception {
-    	Usuario usuario=(Usuario) mDAO.findById(Usuario.class, idUsuario);
-    	if(idUsuario=="Z_Guitarra")
+    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, idUsuario);
+    	if(idUsuario=="Admin")
     		throw new Exception("No se puede desactivar al usuario administrador.");
     	usuario.setActivo(!usuario.getActivo());
     	System.out.println("activar/desactivar "+usuario.getActivo());
@@ -126,11 +126,11 @@ public class ManagerSeguridades {
 
     
     public void eliminarUsuario(String idUsuario) throws Exception {
-    	Usuario usuario=(Usuario) mDAO.findById(Usuario.class, idUsuario);
+    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, idUsuario);
     	if(usuario.getIdUsuario()=="Z_Guitarra")
     		throw new Exception("No se puede eliminar el usuario administrador.");
    
-    	mDAO.eliminar(Usuario.class, usuario.getIdUsuario());
+    	mDAO.eliminar(SeguridadesUsuario.class, usuario.getIdUsuario());
     }
   
 }

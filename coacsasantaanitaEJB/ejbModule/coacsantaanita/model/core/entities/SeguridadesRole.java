@@ -5,13 +5,13 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the roles database table.
+ * The persistent class for the seguridades_roles database table.
  * 
  */
 @Entity
-@Table(name="roles")
-@NamedQuery(name="Role.findAll", query="SELECT r FROM Role r")
-public class Role implements Serializable {
+@Table(name="seguridades_roles")
+@NamedQuery(name="SeguridadesRole.findAll", query="SELECT s FROM SeguridadesRole s")
+public class SeguridadesRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -21,12 +21,10 @@ public class Role implements Serializable {
 	@Column(name="nombre_rol")
 	private String nombreRol;
 
-	//bi-directional many-to-one association to Usuario
-	@ManyToOne
-	@JoinColumn(name="id_usuario_usuario")
-	private Usuario usuario;
+	@Column(name="ruta_acceso")
+	private String rutaAcceso;
 
-	public Role() {
+	public SeguridadesRole() {
 	}
 
 	public Integer getSecuencial() {
@@ -45,12 +43,12 @@ public class Role implements Serializable {
 		this.nombreRol = nombreRol;
 	}
 
-	public Usuario getUsuario() {
-		return this.usuario;
+	public String getRutaAcceso() {
+		return this.rutaAcceso;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setRutaAcceso(String rutaAcceso) {
+		this.rutaAcceso = rutaAcceso;
 	}
 
 }

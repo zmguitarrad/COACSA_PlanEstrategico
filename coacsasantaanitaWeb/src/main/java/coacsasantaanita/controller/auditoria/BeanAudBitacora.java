@@ -10,7 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import coacsantaanita.model.auditoria.managers.ManagerAuditoria;
-import coacsantaanita.model.core.entities.AudBitacora;
+import coacsantaanita.model.core.entities.AuditoriaBitacora;
 import coacsasantaanita.controller.JSFUtil;
 import coacsasantaanita.model.core.utils.ModelUtil;
 
@@ -20,7 +20,7 @@ public class BeanAudBitacora implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private ManagerAuditoria managerAuditoria;
-	private List<AudBitacora> listaBitacora;
+	private List<AuditoriaBitacora> listaBitacora;
 	private Date fechaInicio;
 	private Date fechaFin;
 
@@ -47,11 +47,11 @@ public class BeanAudBitacora implements Serializable {
 		JSFUtil.crearMensajeINFO("Registros encontrados: " + listaBitacora.size());
 	}
 
-	public List<AudBitacora> getListaBitacora() {
+	public List<AuditoriaBitacora> getListaBitacora() {
 		return listaBitacora;
 	}
 
-	public void setListaBitacora(List<AudBitacora> listaBitacora) {
+	public void setListaBitacora(List<AuditoriaBitacora> listaBitacora) {
 		this.listaBitacora = listaBitacora;
 	}
 

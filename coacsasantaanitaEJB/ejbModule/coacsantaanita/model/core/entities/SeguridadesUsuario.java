@@ -2,16 +2,16 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
- * The persistent class for the usuario database table.
+ * The persistent class for the seguridades_usuario database table.
  * 
  */
 @Entity
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
-public class Usuario implements Serializable {
+@Table(name="seguridades_usuario")
+@NamedQuery(name="SeguridadesUsuario.findAll", query="SELECT s FROM SeguridadesUsuario s")
+public class SeguridadesUsuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,15 +32,7 @@ public class Usuario implements Serializable {
 
 	private Integer secuencial;
 
-	//bi-directional many-to-one association to Actividade
-	@OneToMany(mappedBy="usuario")
-	private List<Actividade> actividades;
-
-	//bi-directional many-to-one association to Role
-	@OneToMany(mappedBy="usuario")
-	private List<Role> roles;
-
-	public Usuario() {
+	public SeguridadesUsuario() {
 	}
 
 	public String getIdUsuario() {
@@ -105,50 +97,6 @@ public class Usuario implements Serializable {
 
 	public void setSecuencial(Integer secuencial) {
 		this.secuencial = secuencial;
-	}
-
-	public List<Actividade> getActividades() {
-		return this.actividades;
-	}
-
-	public void setActividades(List<Actividade> actividades) {
-		this.actividades = actividades;
-	}
-
-	public Actividade addActividade(Actividade actividade) {
-		getActividades().add(actividade);
-		actividade.setUsuario(this);
-
-		return actividade;
-	}
-
-	public Actividade removeActividade(Actividade actividade) {
-		getActividades().remove(actividade);
-		actividade.setUsuario(null);
-
-		return actividade;
-	}
-
-	public List<Role> getRoles() {
-		return this.roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Role addRole(Role role) {
-		getRoles().add(role);
-		role.setUsuario(this);
-
-		return role;
-	}
-
-	public Role removeRole(Role role) {
-		getRoles().remove(role);
-		role.setUsuario(null);
-
-		return role;
 	}
 
 }

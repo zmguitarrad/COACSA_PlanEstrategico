@@ -6,19 +6,18 @@ import java.sql.Timestamp;
 
 
 /**
- * The persistent class for the aud_bitacora database table.
+ * The persistent class for the auditoria_bitacora database table.
  * 
  */
 @Entity
-@Table(name="aud_bitacora")
-@NamedQuery(name="AudBitacora.findAll", query="SELECT a FROM AudBitacora a")
-public class AudBitacora implements Serializable {
+@Table(name="auditoria_bitacora")
+@NamedQuery(name="AuditoriaBitacora.findAll", query="SELECT a FROM AuditoriaBitacora a")
+public class AuditoriaBitacora implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_aud_bitacora")
-	private Integer idAudBitacora;
+	private Integer secuencial;
 
 	@Column(name="descripcion_evento")
 	private String descripcionEvento;
@@ -38,15 +37,15 @@ public class AudBitacora implements Serializable {
 	@Column(name="nombre_metodo")
 	private String nombreMetodo;
 
-	public AudBitacora() {
+	public AuditoriaBitacora() {
 	}
 
-	public Integer getIdAudBitacora() {
-		return this.idAudBitacora;
+	public Integer getSecuencial() {
+		return this.secuencial;
 	}
 
-	public void setIdAudBitacora(Integer idAudBitacora) {
-		this.idAudBitacora = idAudBitacora;
+	public void setSecuencial(Integer secuencial) {
+		this.secuencial = secuencial;
 	}
 
 	public String getDescripcionEvento() {

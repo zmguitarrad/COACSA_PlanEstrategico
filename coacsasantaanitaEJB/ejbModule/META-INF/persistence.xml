@@ -2,16 +2,19 @@
 <persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	<persistence-unit name="coacsaDS" transaction-type="JTA">
 		<jta-data-source>java:/coacsaDS</jta-data-source>
-		<class>coacsantaanita.model.core.entities.Actividade</class>
-		<class>coacsantaanita.model.core.entities.AudBitacora</class>
-		<class>coacsantaanita.model.core.entities.Calendario</class>
-		<class>coacsantaanita.model.core.entities.Estado</class>
-		<class>coacsantaanita.model.core.entities.Indicadore</class>
-		<class>coacsantaanita.model.core.entities.ObjetivoPerspectiva</class>
-		<class>coacsantaanita.model.core.entities.Perspectiva</class>
-		<class>coacsantaanita.model.core.entities.PlanEstrategico</class>
-		<class>coacsantaanita.model.core.entities.PoaMaestro</class>
-		<class>coacsantaanita.model.core.entities.Role</class>
-		<class>coacsantaanita.model.core.entities.Usuario</class>
+		<class>coacsantaanita.model.core.entities.AuditoriaBitacora</class>
+		<class>coacsantaanita.model.core.entities.GeneralesAnio</class>
+		<class>coacsantaanita.model.core.entities.GeneralesEstado</class>
+		<class>coacsantaanita.model.core.entities.GeneralesMes</class>
+		<class>coacsantaanita.model.core.entities.IndicadoresIndicadore</class>
+		<class>coacsantaanita.model.core.entities.MandoIntegralDetallePlan</class>
+		<class>coacsantaanita.model.core.entities.MandoIntegralPlanEstrategico</class>
+		<class>coacsantaanita.model.core.entities.MandoIntegralPoaMaestro</class>
+		<class>coacsantaanita.model.core.entities.ProcesoActividad</class>
+		<class>coacsantaanita.model.core.entities.ProcesoObjetivoPerspectiva</class>
+		<class>coacsantaanita.model.core.entities.ProcesoPerspectiva</class>
+		<class>coacsantaanita.model.core.entities.SeguridadesRole</class>
+		<class>coacsantaanita.model.core.entities.SeguridadesUsuario</class>
+		<class>coacsantaanita.model.core.entities.SeguridadesUsuarioRole</class>
 	</persistence-unit>
 </persistence>
