@@ -22,9 +22,9 @@ public class GeneralesEstado implements Serializable {
 	@Column(name="nombre_estado")
 	private String nombreEstado;
 
-	//bi-directional many-to-one association to MandoIntegralPoaMaestro
+	//bi-directional many-to-one association to MandoIntegralPoaActividade
 	@OneToMany(mappedBy="generalesEstado")
-	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
+	private List<MandoIntegralPoaActividade> mandoIntegralPoaActividades;
 
 	public GeneralesEstado() {
 	}
@@ -45,26 +45,26 @@ public class GeneralesEstado implements Serializable {
 		this.nombreEstado = nombreEstado;
 	}
 
-	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
-		return this.mandoIntegralPoaMaestros;
+	public List<MandoIntegralPoaActividade> getMandoIntegralPoaActividades() {
+		return this.mandoIntegralPoaActividades;
 	}
 
-	public void setMandoIntegralPoaMaestros(List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros) {
-		this.mandoIntegralPoaMaestros = mandoIntegralPoaMaestros;
+	public void setMandoIntegralPoaActividades(List<MandoIntegralPoaActividade> mandoIntegralPoaActividades) {
+		this.mandoIntegralPoaActividades = mandoIntegralPoaActividades;
 	}
 
-	public MandoIntegralPoaMaestro addMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
-		getMandoIntegralPoaMaestros().add(mandoIntegralPoaMaestro);
-		mandoIntegralPoaMaestro.setGeneralesEstado(this);
+	public MandoIntegralPoaActividade addMandoIntegralPoaActividade(MandoIntegralPoaActividade mandoIntegralPoaActividade) {
+		getMandoIntegralPoaActividades().add(mandoIntegralPoaActividade);
+		mandoIntegralPoaActividade.setGeneralesEstado(this);
 
-		return mandoIntegralPoaMaestro;
+		return mandoIntegralPoaActividade;
 	}
 
-	public MandoIntegralPoaMaestro removeMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
-		getMandoIntegralPoaMaestros().remove(mandoIntegralPoaMaestro);
-		mandoIntegralPoaMaestro.setGeneralesEstado(null);
+	public MandoIntegralPoaActividade removeMandoIntegralPoaActividade(MandoIntegralPoaActividade mandoIntegralPoaActividade) {
+		getMandoIntegralPoaActividades().remove(mandoIntegralPoaActividade);
+		mandoIntegralPoaActividade.setGeneralesEstado(null);
 
-		return mandoIntegralPoaMaestro;
+		return mandoIntegralPoaActividade;
 	}
 
 }

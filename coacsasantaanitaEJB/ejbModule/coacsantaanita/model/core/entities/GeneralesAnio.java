@@ -21,9 +21,13 @@ public class GeneralesAnio implements Serializable {
 
 	private Integer anio;
 
-	//bi-directional many-to-one association to MandoIntegralPlanEstrategico
+	//bi-directional many-to-one association to MandoIntegralPoaMaestro
 	@OneToMany(mappedBy="generalesAnio")
-	private List<MandoIntegralPlanEstrategico> mandoIntegralPlanEstrategicos;
+	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
+
+	//bi-directional many-to-one association to GeneralesCalendario
+	@OneToMany(mappedBy="generalesAnio")
+	private List<GeneralesCalendario> generalesCalendarios;
 
 	public GeneralesAnio() {
 	}
@@ -44,26 +48,48 @@ public class GeneralesAnio implements Serializable {
 		this.anio = anio;
 	}
 
-	public List<MandoIntegralPlanEstrategico> getMandoIntegralPlanEstrategicos() {
-		return this.mandoIntegralPlanEstrategicos;
+	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
+		return this.mandoIntegralPoaMaestros;
 	}
 
-	public void setMandoIntegralPlanEstrategicos(List<MandoIntegralPlanEstrategico> mandoIntegralPlanEstrategicos) {
-		this.mandoIntegralPlanEstrategicos = mandoIntegralPlanEstrategicos;
+	public void setMandoIntegralPoaMaestros(List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros) {
+		this.mandoIntegralPoaMaestros = mandoIntegralPoaMaestros;
 	}
 
-	public MandoIntegralPlanEstrategico addMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
-		getMandoIntegralPlanEstrategicos().add(mandoIntegralPlanEstrategico);
-		mandoIntegralPlanEstrategico.setGeneralesAnio(this);
+	public MandoIntegralPoaMaestro addMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().add(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setGeneralesAnio(this);
 
-		return mandoIntegralPlanEstrategico;
+		return mandoIntegralPoaMaestro;
 	}
 
-	public MandoIntegralPlanEstrategico removeMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
-		getMandoIntegralPlanEstrategicos().remove(mandoIntegralPlanEstrategico);
-		mandoIntegralPlanEstrategico.setGeneralesAnio(null);
+	public MandoIntegralPoaMaestro removeMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().remove(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setGeneralesAnio(null);
 
-		return mandoIntegralPlanEstrategico;
+		return mandoIntegralPoaMaestro;
+	}
+
+	public List<GeneralesCalendario> getGeneralesCalendarios() {
+		return this.generalesCalendarios;
+	}
+
+	public void setGeneralesCalendarios(List<GeneralesCalendario> generalesCalendarios) {
+		this.generalesCalendarios = generalesCalendarios;
+	}
+
+	public GeneralesCalendario addGeneralesCalendario(GeneralesCalendario generalesCalendario) {
+		getGeneralesCalendarios().add(generalesCalendario);
+		generalesCalendario.setGeneralesAnio(this);
+
+		return generalesCalendario;
+	}
+
+	public GeneralesCalendario removeGeneralesCalendario(GeneralesCalendario generalesCalendario) {
+		getGeneralesCalendarios().remove(generalesCalendario);
+		generalesCalendario.setGeneralesAnio(null);
+
+		return generalesCalendario;
 	}
 
 }

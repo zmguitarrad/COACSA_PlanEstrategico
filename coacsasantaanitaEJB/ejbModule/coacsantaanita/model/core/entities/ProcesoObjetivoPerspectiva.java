@@ -22,14 +22,14 @@ public class ProcesoObjetivoPerspectiva implements Serializable {
 	@Column(name="nombre_objetivo_perspectiva")
 	private String nombreObjetivoPerspectiva;
 
-	//bi-directional many-to-one association to IndicadoresIndicadore
-	@OneToMany(mappedBy="procesoObjetivoPerspectiva")
-	private List<IndicadoresIndicadore> indicadoresIndicadores;
-
 	//bi-directional many-to-one association to ProcesoPerspectiva
 	@ManyToOne
 	@JoinColumn(name="secuencial_perspectiva")
 	private ProcesoPerspectiva procesoPerspectiva;
+
+	//bi-directional many-to-one association to IndicadoresIndicador
+	@OneToMany(mappedBy="procesoObjetivoPerspectiva")
+	private List<IndicadoresIndicador> indicadoresIndicadors;
 
 	public ProcesoObjetivoPerspectiva() {
 	}
@@ -50,34 +50,34 @@ public class ProcesoObjetivoPerspectiva implements Serializable {
 		this.nombreObjetivoPerspectiva = nombreObjetivoPerspectiva;
 	}
 
-	public List<IndicadoresIndicadore> getIndicadoresIndicadores() {
-		return this.indicadoresIndicadores;
-	}
-
-	public void setIndicadoresIndicadores(List<IndicadoresIndicadore> indicadoresIndicadores) {
-		this.indicadoresIndicadores = indicadoresIndicadores;
-	}
-
-	public IndicadoresIndicadore addIndicadoresIndicadore(IndicadoresIndicadore indicadoresIndicadore) {
-		getIndicadoresIndicadores().add(indicadoresIndicadore);
-		indicadoresIndicadore.setProcesoObjetivoPerspectiva(this);
-
-		return indicadoresIndicadore;
-	}
-
-	public IndicadoresIndicadore removeIndicadoresIndicadore(IndicadoresIndicadore indicadoresIndicadore) {
-		getIndicadoresIndicadores().remove(indicadoresIndicadore);
-		indicadoresIndicadore.setProcesoObjetivoPerspectiva(null);
-
-		return indicadoresIndicadore;
-	}
-
 	public ProcesoPerspectiva getProcesoPerspectiva() {
 		return this.procesoPerspectiva;
 	}
 
 	public void setProcesoPerspectiva(ProcesoPerspectiva procesoPerspectiva) {
 		this.procesoPerspectiva = procesoPerspectiva;
+	}
+
+	public List<IndicadoresIndicador> getIndicadoresIndicadors() {
+		return this.indicadoresIndicadors;
+	}
+
+	public void setIndicadoresIndicadors(List<IndicadoresIndicador> indicadoresIndicadors) {
+		this.indicadoresIndicadors = indicadoresIndicadors;
+	}
+
+	public IndicadoresIndicador addIndicadoresIndicador(IndicadoresIndicador indicadoresIndicador) {
+		getIndicadoresIndicadors().add(indicadoresIndicador);
+		indicadoresIndicador.setProcesoObjetivoPerspectiva(this);
+
+		return indicadoresIndicador;
+	}
+
+	public IndicadoresIndicador removeIndicadoresIndicador(IndicadoresIndicador indicadoresIndicador) {
+		getIndicadoresIndicadors().remove(indicadoresIndicador);
+		indicadoresIndicador.setProcesoObjetivoPerspectiva(null);
+
+		return indicadoresIndicador;
 	}
 
 }

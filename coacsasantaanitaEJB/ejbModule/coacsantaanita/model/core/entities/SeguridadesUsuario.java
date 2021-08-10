@@ -6,18 +6,17 @@ import java.util.List;
 
 
 /**
- * The persistent class for the seguridades_usuario database table.
+ * The persistent class for the seguridades_usuarios database table.
  * 
  */
 @Entity
-@Table(name="seguridades_usuario")
+@Table(name="seguridades_usuarios")
 @NamedQuery(name="SeguridadesUsuario.findAll", query="SELECT s FROM SeguridadesUsuario s")
 public class SeguridadesUsuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_usuario")
-	private String idUsuario;
+	private String secuencial;
 
 	private Boolean activo;
 
@@ -29,9 +28,9 @@ public class SeguridadesUsuario implements Serializable {
 
 	private String correo;
 
-	private String nombres;
+	private Integer id;
 
-	private Integer secuencial;
+	private String nombres;
 
 	//bi-directional many-to-one association to SeguridadesUsuarioRole
 	@OneToMany(mappedBy="seguridadesUsuario")
@@ -40,12 +39,12 @@ public class SeguridadesUsuario implements Serializable {
 	public SeguridadesUsuario() {
 	}
 
-	public String getIdUsuario() {
-		return this.idUsuario;
+	public String getSecuencial() {
+		return this.secuencial;
 	}
 
-	public void setIdUsuario(String idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setSecuencial(String secuencial) {
+		this.secuencial = secuencial;
 	}
 
 	public Boolean getActivo() {
@@ -88,20 +87,20 @@ public class SeguridadesUsuario implements Serializable {
 		this.correo = correo;
 	}
 
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getNombres() {
 		return this.nombres;
 	}
 
 	public void setNombres(String nombres) {
 		this.nombres = nombres;
-	}
-
-	public Integer getSecuencial() {
-		return this.secuencial;
-	}
-
-	public void setSecuencial(Integer secuencial) {
-		this.secuencial = secuencial;
 	}
 
 	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRoles() {

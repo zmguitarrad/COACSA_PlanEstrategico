@@ -19,18 +19,20 @@ public class SeguridadesUsuarioRole implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
 
-	//bi-directional many-to-one association to ProcesoActividad
-	@OneToMany(mappedBy="seguridadesUsuarioRole")
-	private List<ProcesoActividad> procesoActividads;
+	private Boolean activo;
 
 	//bi-directional many-to-one association to SeguridadesRole
 	@ManyToOne
 	@JoinColumn(name="secuencial_roles")
 	private SeguridadesRole seguridadesRole;
 
+	//bi-directional many-to-one association to ProcesoActividade
+	@OneToMany(mappedBy="seguridadesUsuarioRole")
+	private List<ProcesoActividade> procesoActividades;
+
 	//bi-directional many-to-one association to SeguridadesUsuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="secuencial_usuario")
 	private SeguridadesUsuario seguridadesUsuario;
 
 	public SeguridadesUsuarioRole() {
@@ -44,26 +46,12 @@ public class SeguridadesUsuarioRole implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public List<ProcesoActividad> getProcesoActividads() {
-		return this.procesoActividads;
+	public Boolean getActivo() {
+		return this.activo;
 	}
 
-	public void setProcesoActividads(List<ProcesoActividad> procesoActividads) {
-		this.procesoActividads = procesoActividads;
-	}
-
-	public ProcesoActividad addProcesoActividad(ProcesoActividad procesoActividad) {
-		getProcesoActividads().add(procesoActividad);
-		procesoActividad.setSeguridadesUsuarioRole(this);
-
-		return procesoActividad;
-	}
-
-	public ProcesoActividad removeProcesoActividad(ProcesoActividad procesoActividad) {
-		getProcesoActividads().remove(procesoActividad);
-		procesoActividad.setSeguridadesUsuarioRole(null);
-
-		return procesoActividad;
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 
 	public SeguridadesRole getSeguridadesRole() {
@@ -72,6 +60,28 @@ public class SeguridadesUsuarioRole implements Serializable {
 
 	public void setSeguridadesRole(SeguridadesRole seguridadesRole) {
 		this.seguridadesRole = seguridadesRole;
+	}
+
+	public List<ProcesoActividade> getProcesoActividades() {
+		return this.procesoActividades;
+	}
+
+	public void setProcesoActividades(List<ProcesoActividade> procesoActividades) {
+		this.procesoActividades = procesoActividades;
+	}
+
+	public ProcesoActividade addProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().add(procesoActividade);
+		procesoActividade.setSeguridadesUsuarioRole(this);
+
+		return procesoActividade;
+	}
+
+	public ProcesoActividade removeProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().remove(procesoActividade);
+		procesoActividade.setSeguridadesUsuarioRole(null);
+
+		return procesoActividade;
 	}
 
 	public SeguridadesUsuario getSeguridadesUsuario() {

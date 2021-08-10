@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import coacsantaanita.model.auditoria.managers.ManagerAuditoria;
-import coacsantaanita.model.core.entities.ProcesoActividad;
-import coacsantaanita.model.core.entities.IndicadoresIndicadore;
+import coacsantaanita.model.core.entities.ProcesoActividade;
+import coacsantaanita.model.core.entities.IndicadoresIndicador;
 import coacsantaanita.model.core.entities.ProcesoObjetivoPerspectiva;
 import coacsantaanita.model.core.entities.ProcesoPerspectiva;
 import coacsantaanita.model.core.entities.MandoIntegralPlanEstrategico;
@@ -38,33 +38,19 @@ public class ManagerActividades {
     	return mDAO.findAll(MandoIntegralPlanEstrategico.class, "nombre");
     }
     
-
-    public MandoIntegralPlanEstrategico insertarPlan(MandoIntegralPlanEstrategico nuevoPlan) throws Exception {
-    	MandoIntegralPlanEstrategico plan=new MandoIntegralPlanEstrategico();
-    	plan.setMandoIntegralDetallePlan(nuevoPlan.getMandoIntegralDetallePlan());
-    	plan.setGeneralesAnio(nuevoPlan.getGeneralesAnio());
-    	mDAO.insertar(plan);
-    	return plan;
-    }
-    
     
     public void eliminarPaln(int secuencial) throws Exception {
     	mDAO.eliminar(MandoIntegralPlanEstrategico.class, secuencial);
     }
     
-    public void actualizarPlan(MandoIntegralPlanEstrategico edicionPlan) throws Exception {
-    	MandoIntegralPlanEstrategico plan=(MandoIntegralPlanEstrategico) mDAO.findById(MandoIntegralPlanEstrategico.class, edicionPlan.getSecuencial());
-    	plan.setMandoIntegralDetallePlan(edicionPlan.getMandoIntegralDetallePlan());
-    	plan.setGeneralesAnio(edicionPlan.getGeneralesAnio());
-    	mDAO.actualizar(plan);
+ 
+    
+    public ProcesoActividade findPoaByActividad(int secuencial) {
+    	return em.find(ProcesoActividade.class, secuencial);
     }
     
-    public ProcesoActividad findPoaByActividad(int secuencial) {
-    	return em.find(ProcesoActividad.class, secuencial);
-    }
-    
-    public void actualizarActividad(ProcesoActividad actividade) throws Exception{
-    	ProcesoActividad a =findPoaByActividad(actividade.getSecuencial());
+    public void actualizarActividad(ProcesoActividade actividade) throws Exception{
+    	ProcesoActividade a =findPoaByActividad(actividade.getSecuencial());
     	if(a==null)
     		throw new Exception("No existe");
     	//p.setCalendario(poaMaestro.getCalendario());
@@ -77,8 +63,8 @@ public class ManagerActividades {
     }
     
     //Actividades
-    public List<ProcesoActividad> findAllActividades(){
-    	return mDAO.findAll(ProcesoActividad.class);
+    public List<ProcesoActividade> findAllActividades(){
+    	return mDAO.findAll(ProcesoActividade.class);
     }
     public List<ProcesoPerspectiva> findAllPerspectiva(){
     	return mDAO.findAll(ProcesoPerspectiva.class);
@@ -86,8 +72,8 @@ public class ManagerActividades {
     public List<ProcesoObjetivoPerspectiva> findAllObjetivo(){
     	return mDAO.findAll(ProcesoObjetivoPerspectiva.class);
     }
-    public List<IndicadoresIndicadore> findAllIndicadores(){
-    	return mDAO.findAll(IndicadoresIndicadore.class);
+    public List<IndicadoresIndicador> findAllIndicadores(){
+    	return mDAO.findAll(IndicadoresIndicador.class);
     }
     
 }

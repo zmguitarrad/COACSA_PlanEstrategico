@@ -6,13 +6,13 @@ import java.util.List;
 
 
 /**
- * The persistent class for the indicadores_indicadores database table.
+ * The persistent class for the indicadores_indicador database table.
  * 
  */
 @Entity
-@Table(name="indicadores_indicadores")
-@NamedQuery(name="IndicadoresIndicadore.findAll", query="SELECT i FROM IndicadoresIndicadore i")
-public class IndicadoresIndicadore implements Serializable {
+@Table(name="indicadores_indicador")
+@NamedQuery(name="IndicadoresIndicador.findAll", query="SELECT i FROM IndicadoresIndicador i")
+public class IndicadoresIndicador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,11 +27,11 @@ public class IndicadoresIndicadore implements Serializable {
 	@JoinColumn(name="secuencial_objetivo_perspectiva")
 	private ProcesoObjetivoPerspectiva procesoObjetivoPerspectiva;
 
-	//bi-directional many-to-one association to ProcesoActividad
-	@OneToMany(mappedBy="indicadoresIndicadore")
-	private List<ProcesoActividad> procesoActividads;
+	//bi-directional many-to-one association to ProcesoActividade
+	@OneToMany(mappedBy="indicadoresIndicador")
+	private List<ProcesoActividade> procesoActividades;
 
-	public IndicadoresIndicadore() {
+	public IndicadoresIndicador() {
 	}
 
 	public Integer getSecuencial() {
@@ -58,26 +58,26 @@ public class IndicadoresIndicadore implements Serializable {
 		this.procesoObjetivoPerspectiva = procesoObjetivoPerspectiva;
 	}
 
-	public List<ProcesoActividad> getProcesoActividads() {
-		return this.procesoActividads;
+	public List<ProcesoActividade> getProcesoActividades() {
+		return this.procesoActividades;
 	}
 
-	public void setProcesoActividads(List<ProcesoActividad> procesoActividads) {
-		this.procesoActividads = procesoActividads;
+	public void setProcesoActividades(List<ProcesoActividade> procesoActividades) {
+		this.procesoActividades = procesoActividades;
 	}
 
-	public ProcesoActividad addProcesoActividad(ProcesoActividad procesoActividad) {
-		getProcesoActividads().add(procesoActividad);
-		procesoActividad.setIndicadoresIndicadore(this);
+	public ProcesoActividade addProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().add(procesoActividade);
+		procesoActividade.setIndicadoresIndicador(this);
 
-		return procesoActividad;
+		return procesoActividade;
 	}
 
-	public ProcesoActividad removeProcesoActividad(ProcesoActividad procesoActividad) {
-		getProcesoActividads().remove(procesoActividad);
-		procesoActividad.setIndicadoresIndicadore(null);
+	public ProcesoActividade removeProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().remove(procesoActividade);
+		procesoActividade.setIndicadoresIndicador(null);
 
-		return procesoActividad;
+		return procesoActividade;
 	}
 
 }

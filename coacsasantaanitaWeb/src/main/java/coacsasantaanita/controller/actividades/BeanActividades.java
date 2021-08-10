@@ -9,8 +9,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import coacsantaanita.model.actividades.manager.ManagerActividades;
-import coacsantaanita.model.core.entities.IndicadoresIndicadore;
-import coacsantaanita.model.core.entities.ProcesoActividad;
+import coacsantaanita.model.core.entities.IndicadoresIndicador;
+import coacsantaanita.model.core.entities.ProcesoActividade;
 import coacsantaanita.model.core.entities.ProcesoObjetivoPerspectiva;
 import coacsantaanita.model.core.entities.ProcesoPerspectiva;
 
@@ -20,11 +20,11 @@ public class BeanActividades implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EJB
 	private ManagerActividades mActividaes;
-	private List<ProcesoActividad> listaActividades;
+	private List<ProcesoActividade> listaActividades;
 	private List<ProcesoPerspectiva>listaPerspectiva;
 	private List<ProcesoObjetivoPerspectiva> listaObjetivo;
-	private List<IndicadoresIndicadore> listaIndicadores;
-	private ProcesoActividad actividadSeleccionado;
+	private List<IndicadoresIndicador> listaIndicadores;
+	private ProcesoActividade actividadSeleccionado;
 
 	public BeanActividades() {
 	}
@@ -43,14 +43,14 @@ public class BeanActividades implements Serializable {
 		listaPerspectiva=mActividaes.findAllPerspectiva();
 		return "actividades?faces-redirect=true";
 	}
-	public void actionListenerSeleccionarActividad(ProcesoActividad actividade) {
+	public void actionListenerSeleccionarActividad(ProcesoActividade actividade) {
 		actividadSeleccionado=actividade;
 		
 	}
-	public List<ProcesoActividad> getListaActividades() {
+	public List<ProcesoActividade> getListaActividades() {
 		return listaActividades;
 	}
-	public void setListaActividades(List<ProcesoActividad> listaActividades) {
+	public void setListaActividades(List<ProcesoActividade> listaActividades) {
 		this.listaActividades = listaActividades;
 	}
 	public List<ProcesoPerspectiva> getListaPerspectiva() {
@@ -65,16 +65,16 @@ public class BeanActividades implements Serializable {
 	public void setListaObjetivo(List<ProcesoObjetivoPerspectiva> listaObjetivo) {
 		this.listaObjetivo = listaObjetivo;
 	}
-	public List<IndicadoresIndicadore> getListaIndicadores() {
+	public List<IndicadoresIndicador> getListaIndicadores() {
 		return listaIndicadores;
 	}
-	public void setListaIndicadores(List<IndicadoresIndicadore> listaIndicadores) {
+	public void setListaIndicadores(List<IndicadoresIndicador> listaIndicadores) {
 		this.listaIndicadores = listaIndicadores;
 	}
-	public ProcesoActividad getActividadSeleccionado() {
+	public ProcesoActividade getActividadSeleccionado() {
 		return actividadSeleccionado;
 	}
-	public void setActividadSeleccionado(ProcesoActividad actividadSeleccionado) {
+	public void setActividadSeleccionado(ProcesoActividade actividadSeleccionado) {
 		this.actividadSeleccionado = actividadSeleccionado;
 	}
 		

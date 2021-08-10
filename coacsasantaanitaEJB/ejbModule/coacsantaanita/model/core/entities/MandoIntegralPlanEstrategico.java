@@ -19,15 +19,11 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
 
-	//bi-directional many-to-one association to GeneralesAnio
-	@ManyToOne
-	@JoinColumn(name="secuencial_anio")
-	private GeneralesAnio generalesAnio;
+	@Column(name="anio_fin")
+	private Integer anioFin;
 
-	//bi-directional many-to-one association to MandoIntegralDetallePlan
-	@ManyToOne
-	@JoinColumn(name="secuencial_detalle_plan")
-	private MandoIntegralDetallePlan mandoIntegralDetallePlan;
+	@Column(name="anio_inicio")
+	private Integer anioInicio;
 
 	//bi-directional many-to-one association to MandoIntegralPoaMaestro
 	@OneToMany(mappedBy="mandoIntegralPlanEstrategico")
@@ -48,20 +44,20 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public GeneralesAnio getGeneralesAnio() {
-		return this.generalesAnio;
+	public Integer getAnioFin() {
+		return this.anioFin;
 	}
 
-	public void setGeneralesAnio(GeneralesAnio generalesAnio) {
-		this.generalesAnio = generalesAnio;
+	public void setAnioFin(Integer anioFin) {
+		this.anioFin = anioFin;
 	}
 
-	public MandoIntegralDetallePlan getMandoIntegralDetallePlan() {
-		return this.mandoIntegralDetallePlan;
+	public Integer getAnioInicio() {
+		return this.anioInicio;
 	}
 
-	public void setMandoIntegralDetallePlan(MandoIntegralDetallePlan mandoIntegralDetallePlan) {
-		this.mandoIntegralDetallePlan = mandoIntegralDetallePlan;
+	public void setAnioInicio(Integer anioInicio) {
+		this.anioInicio = anioInicio;
 	}
 
 	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {

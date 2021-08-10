@@ -119,7 +119,7 @@ public class ManagerSeguridades {
     
     public SeguridadesUsuario insertarUsuario(SeguridadesUsuario nuevoUsuario) throws Exception {
     	SeguridadesUsuario usuario=new SeguridadesUsuario();
-    	usuario.setIdUsuario(nuevoUsuario.getIdUsuario());
+    	usuario.setSecuencial(nuevoUsuario.getSecuencial());
     	usuario.setCedula(nuevoUsuario.getCedula());
     	usuario.setApellidos(nuevoUsuario.getApellidos());
     	usuario.setNombres(nuevoUsuario.getNombres());
@@ -132,7 +132,7 @@ public class ManagerSeguridades {
 
     
     public void actualizarUsuario(LoginDTO loginDTO,SeguridadesUsuario edicionUsuario) throws Exception {
-    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, edicionUsuario.getIdUsuario());
+    	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, edicionUsuario.getSecuencial());
     	usuario.setApellidos(edicionUsuario.getApellidos());
     	usuario.setClave(edicionUsuario.getClave());
     	usuario.setCorreo(edicionUsuario.getCorreo());
@@ -152,11 +152,11 @@ public class ManagerSeguridades {
     
     public void eliminarUsuario(String idSegUsuario) throws Exception {
     	SeguridadesUsuario usuario=(SeguridadesUsuario) mDAO.findById(SeguridadesUsuario.class, idSegUsuario);
-    	if(usuario.getIdUsuario()=="Admin")
+    	if(usuario.getSecuencial()=="Admin")
     		throw new Exception("No se puede eliminar el usuario administrador.");
     	if(usuario.getSeguridadesUsuarioRoles().size()>0)
     		throw new Exception("No se puede elimininar el usuario porque tiene asignaciones de módulos.");
-    	mDAO.eliminar(SeguridadesUsuario.class, usuario.getIdUsuario());
+    	mDAO.eliminar(SeguridadesUsuario.class, usuario.getSecuencial());
     }
     
     public List<SeguridadesRole> findAllRoles(){
@@ -166,7 +166,6 @@ public class ManagerSeguridades {
     public SeguridadesRole insertarRole(SeguridadesRole nuevoRol) throws Exception {
     	SeguridadesRole rol=new SeguridadesRole();
     	rol.setNombreRol(nuevoRol.getNombreRol());
-    	rol.setRutaAcceso(nuevoRol.getRutaAcceso());
     	mDAO.insertar(rol);
     	return rol;
     
@@ -178,7 +177,6 @@ public class ManagerSeguridades {
     public void actualizarRol(SeguridadesRole edicionRol) throws Exception {
     	SeguridadesRole rol=(SeguridadesRole) mDAO.findById(SeguridadesRole.class, edicionRol.getSecuencial());
     	rol.setNombreRol(edicionRol.getNombreRol());
-    	rol.setRutaAcceso(edicionRol.getRutaAcceso());
     	mDAO.actualizar(rol);
     }
     /*

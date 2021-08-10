@@ -19,11 +19,10 @@ public class SeguridadesRole implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
 
+	private Boolean activo;
+
 	@Column(name="nombre_rol")
 	private String nombreRol;
-
-	@Column(name="ruta_acceso")
-	private String rutaAcceso;
 
 	//bi-directional many-to-one association to SeguridadesUsuarioRole
 	@OneToMany(mappedBy="seguridadesRole")
@@ -40,20 +39,20 @@ public class SeguridadesRole implements Serializable {
 		this.secuencial = secuencial;
 	}
 
+	public Boolean getActivo() {
+		return this.activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
+	}
+
 	public String getNombreRol() {
 		return this.nombreRol;
 	}
 
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
-	}
-
-	public String getRutaAcceso() {
-		return this.rutaAcceso;
-	}
-
-	public void setRutaAcceso(String rutaAcceso) {
-		this.rutaAcceso = rutaAcceso;
 	}
 
 	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRoles() {

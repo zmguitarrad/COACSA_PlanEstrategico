@@ -6,39 +6,31 @@ import java.util.List;
 
 
 /**
- * The persistent class for the mando_integral_poa_maestro database table.
+ * The persistent class for the generales_calendario database table.
  * 
  */
 @Entity
-@Table(name="mando_integral_poa_maestro")
-@NamedQuery(name="MandoIntegralPoaMaestro.findAll", query="SELECT m FROM MandoIntegralPoaMaestro m")
-public class MandoIntegralPoaMaestro implements Serializable {
+@Table(name="generales_calendario")
+@NamedQuery(name="GeneralesCalendario.findAll", query="SELECT g FROM GeneralesCalendario g")
+public class GeneralesCalendario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer secuencial;
 
-	private Boolean activo;
-
-	@Column(name="nombre_poa_maestro")
-	private String nombrePoaMaestro;
+	private String mes;
 
 	//bi-directional many-to-one association to GeneralesAnio
 	@ManyToOne
 	@JoinColumn(name="secuencial_anio")
 	private GeneralesAnio generalesAnio;
 
-	//bi-directional many-to-one association to MandoIntegralPlanEstrategico
-	@ManyToOne
-	@JoinColumn(name="secuencial_plan_estrategico")
-	private MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico;
-
 	//bi-directional many-to-one association to MandoIntegralPoaActividade
-	@OneToMany(mappedBy="mandoIntegralPoaMaestro")
+	@OneToMany(mappedBy="generalesCalendario")
 	private List<MandoIntegralPoaActividade> mandoIntegralPoaActividades;
 
-	public MandoIntegralPoaMaestro() {
+	public GeneralesCalendario() {
 	}
 
 	public Integer getSecuencial() {
@@ -49,20 +41,12 @@ public class MandoIntegralPoaMaestro implements Serializable {
 		this.secuencial = secuencial;
 	}
 
-	public Boolean getActivo() {
-		return this.activo;
+	public String getMes() {
+		return this.mes;
 	}
 
-	public void setActivo(Boolean activo) {
-		this.activo = activo;
-	}
-
-	public String getNombrePoaMaestro() {
-		return this.nombrePoaMaestro;
-	}
-
-	public void setNombrePoaMaestro(String nombrePoaMaestro) {
-		this.nombrePoaMaestro = nombrePoaMaestro;
+	public void setMes(String mes) {
+		this.mes = mes;
 	}
 
 	public GeneralesAnio getGeneralesAnio() {
@@ -71,14 +55,6 @@ public class MandoIntegralPoaMaestro implements Serializable {
 
 	public void setGeneralesAnio(GeneralesAnio generalesAnio) {
 		this.generalesAnio = generalesAnio;
-	}
-
-	public MandoIntegralPlanEstrategico getMandoIntegralPlanEstrategico() {
-		return this.mandoIntegralPlanEstrategico;
-	}
-
-	public void setMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
-		this.mandoIntegralPlanEstrategico = mandoIntegralPlanEstrategico;
 	}
 
 	public List<MandoIntegralPoaActividade> getMandoIntegralPoaActividades() {
@@ -91,14 +67,14 @@ public class MandoIntegralPoaMaestro implements Serializable {
 
 	public MandoIntegralPoaActividade addMandoIntegralPoaActividade(MandoIntegralPoaActividade mandoIntegralPoaActividade) {
 		getMandoIntegralPoaActividades().add(mandoIntegralPoaActividade);
-		mandoIntegralPoaActividade.setMandoIntegralPoaMaestro(this);
+		mandoIntegralPoaActividade.setGeneralesCalendario(this);
 
 		return mandoIntegralPoaActividade;
 	}
 
 	public MandoIntegralPoaActividade removeMandoIntegralPoaActividade(MandoIntegralPoaActividade mandoIntegralPoaActividade) {
 		getMandoIntegralPoaActividades().remove(mandoIntegralPoaActividade);
-		mandoIntegralPoaActividade.setMandoIntegralPoaMaestro(null);
+		mandoIntegralPoaActividade.setGeneralesCalendario(null);
 
 		return mandoIntegralPoaActividade;
 	}
