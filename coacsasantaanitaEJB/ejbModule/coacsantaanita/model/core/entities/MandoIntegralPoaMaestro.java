@@ -24,6 +24,10 @@ public class MandoIntegralPoaMaestro implements Serializable {
 	@Column(name="nombre_poa_maestro")
 	private String nombrePoaMaestro;
 
+	//bi-directional many-to-one association to MandoIntegralPoaActividade
+	@OneToMany(mappedBy="mandoIntegralPoaMaestro")
+	private List<MandoIntegralPoaActividade> mandoIntegralPoaActividades;
+
 	//bi-directional many-to-one association to GeneralesAnio
 	@ManyToOne
 	@JoinColumn(name="secuencial_anio")
@@ -33,10 +37,6 @@ public class MandoIntegralPoaMaestro implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="secuencial_plan_estrategico")
 	private MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico;
-
-	//bi-directional many-to-one association to MandoIntegralPoaActividade
-	@OneToMany(mappedBy="mandoIntegralPoaMaestro")
-	private List<MandoIntegralPoaActividade> mandoIntegralPoaActividades;
 
 	public MandoIntegralPoaMaestro() {
 	}
@@ -65,22 +65,6 @@ public class MandoIntegralPoaMaestro implements Serializable {
 		this.nombrePoaMaestro = nombrePoaMaestro;
 	}
 
-	public GeneralesAnio getGeneralesAnio() {
-		return this.generalesAnio;
-	}
-
-	public void setGeneralesAnio(GeneralesAnio generalesAnio) {
-		this.generalesAnio = generalesAnio;
-	}
-
-	public MandoIntegralPlanEstrategico getMandoIntegralPlanEstrategico() {
-		return this.mandoIntegralPlanEstrategico;
-	}
-
-	public void setMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
-		this.mandoIntegralPlanEstrategico = mandoIntegralPlanEstrategico;
-	}
-
 	public List<MandoIntegralPoaActividade> getMandoIntegralPoaActividades() {
 		return this.mandoIntegralPoaActividades;
 	}
@@ -101,6 +85,22 @@ public class MandoIntegralPoaMaestro implements Serializable {
 		mandoIntegralPoaActividade.setMandoIntegralPoaMaestro(null);
 
 		return mandoIntegralPoaActividade;
+	}
+
+	public GeneralesAnio getGeneralesAnio() {
+		return this.generalesAnio;
+	}
+
+	public void setGeneralesAnio(GeneralesAnio generalesAnio) {
+		this.generalesAnio = generalesAnio;
+	}
+
+	public MandoIntegralPlanEstrategico getMandoIntegralPlanEstrategico() {
+		return this.mandoIntegralPlanEstrategico;
+	}
+
+	public void setMandoIntegralPlanEstrategico(MandoIntegralPlanEstrategico mandoIntegralPlanEstrategico) {
+		this.mandoIntegralPlanEstrategico = mandoIntegralPlanEstrategico;
 	}
 
 }

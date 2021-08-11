@@ -21,14 +21,14 @@ public class SeguridadesUsuarioRole implements Serializable {
 
 	private Boolean activo;
 
+	//bi-directional many-to-one association to ProcesoActividade
+	@OneToMany(mappedBy="seguridadesUsuarioRole")
+	private List<ProcesoActividade> procesoActividades;
+
 	//bi-directional many-to-one association to SeguridadesRole
 	@ManyToOne
 	@JoinColumn(name="secuencial_roles")
 	private SeguridadesRole seguridadesRole;
-
-	//bi-directional many-to-one association to ProcesoActividade
-	@OneToMany(mappedBy="seguridadesUsuarioRole")
-	private List<ProcesoActividade> procesoActividades;
 
 	//bi-directional many-to-one association to SeguridadesUsuario
 	@ManyToOne
@@ -54,14 +54,6 @@ public class SeguridadesUsuarioRole implements Serializable {
 		this.activo = activo;
 	}
 
-	public SeguridadesRole getSeguridadesRole() {
-		return this.seguridadesRole;
-	}
-
-	public void setSeguridadesRole(SeguridadesRole seguridadesRole) {
-		this.seguridadesRole = seguridadesRole;
-	}
-
 	public List<ProcesoActividade> getProcesoActividades() {
 		return this.procesoActividades;
 	}
@@ -82,6 +74,14 @@ public class SeguridadesUsuarioRole implements Serializable {
 		procesoActividade.setSeguridadesUsuarioRole(null);
 
 		return procesoActividade;
+	}
+
+	public SeguridadesRole getSeguridadesRole() {
+		return this.seguridadesRole;
+	}
+
+	public void setSeguridadesRole(SeguridadesRole seguridadesRole) {
+		this.seguridadesRole = seguridadesRole;
 	}
 
 	public SeguridadesUsuario getSeguridadesUsuario() {

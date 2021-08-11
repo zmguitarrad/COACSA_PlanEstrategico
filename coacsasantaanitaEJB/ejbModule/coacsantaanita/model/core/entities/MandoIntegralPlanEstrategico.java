@@ -25,6 +25,9 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 	@Column(name="anio_inicio")
 	private Integer anioInicio;
 
+	@Column(name="nombre_plan_estrategico")
+	private String nombrePlanEstrategico;
+
 	//bi-directional many-to-one association to MandoIntegralPoaMaestro
 	@OneToMany(mappedBy="mandoIntegralPlanEstrategico")
 	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
@@ -58,6 +61,14 @@ public class MandoIntegralPlanEstrategico implements Serializable {
 
 	public void setAnioInicio(Integer anioInicio) {
 		this.anioInicio = anioInicio;
+	}
+
+	public String getNombrePlanEstrategico() {
+		return this.nombrePlanEstrategico;
+	}
+
+	public void setNombrePlanEstrategico(String nombrePlanEstrategico) {
+		this.nombrePlanEstrategico = nombrePlanEstrategico;
 	}
 
 	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {

@@ -34,22 +34,17 @@
 				<p:column headerText="Id">
 					<h:outputText value="#{actividad.secuencial}" />
 				</p:column>
-				<p:column headerText="OBJETIVO" filterBy="#{actividad.indicadoresIndicadore.procesoObjetivoPerspectiva.nombreObjetivoPerspectiva}"
+				<p:column headerText="OBJETIVO" filterBy="#{actividad.indicadoresIndicador.procesoObjetivoPerspectiva.nombreObjetivoPerspectiva}"
 					filterMatchMode="contains">
-					<h:outputText value="#{actividad.indicadoresIndicadore.procesoObjetivoPerspectiva.nombreObjetivoPerspectiva}" />
-				</p:column>
-				
-				<p:column headerText="INDICADOR" filterBy="#{actividad.nombreActividad}"
-					filterMatchMode="contains">
-					<h:outputText value="#{actividad.nombreActividad}" />
+					<h:outputText value="#{actividad.indicadoresIndicador.procesoObjetivoPerspectiva.nombreObjetivoPerspectiva}" />
 				</p:column>
 				<p:column headerText="ACTIVIDADES" filterBy="#{actividad.nombreActividad}"
 					filterMatchMode="contains">
 					<h:outputText value="#{actividad.nombreActividad}" />
 				</p:column>
-				<p:column headerText="Usuario" filterBy="#{actividad.seguridadesUsuarioRole.seguridadesRole.nombreRol}"
+				<p:column headerText="Usuario" filterBy="#{actividad.seguridadesUsuarioRole.seguridadesUsuario.nombres}"
 					filterMatchMode="contains">
-					<h:outputText value="#{actividad.seguridadesUsuarioRole.seguridadesRole.nombreRol}" />
+					<h:outputText value="#{actividad.seguridadesUsuarioRole.seguridadesUsuario.nombres}" />
 				</p:column>
 				<p:column headerText="Personal de Apoyo" filterBy="#{actividad.personalApoyo}"
 					filterMatchMode="contains">
@@ -65,9 +60,9 @@
 					filterMatchMode="contains">
 					<h:outputText value="#{actividad.entregables}" />
 				</p:column>
-				<p:column headerText="Observaciones" filterBy="#{actividad.observaciones}"
+				<p:column headerText="Observaciones" filterBy="#{actividad.procesoObservacion.nombreObservacion}"
 					filterMatchMode="contains">
-					<h:outputText value="#{actividad.observaciones}" />
+					<h:outputText value="#{actividad.procesoObservacion.nombreObservacion}" />
 				</p:column>
 				
 			</p:dataTable>
@@ -84,7 +79,8 @@
 		<h:outputText value="Entregables:   " />
 		<p:inputText value="#{beanActividades.actividadSeleccionado.entregables}" />
 		<h:outputText value="Observaciones: " />
-		<p:inputText value="#{beanActividades.actividadSeleccionado.observaciones}" />
+		<p:inputText value="#{beanActividades.actividadSeleccionado.procesoObservacion.nombreObservacion}" />
+		
 		</h:panelGrid>
 		<p:dataTable value="#{beanPoa.listaPoa}" var="poa">
 							<p:column headerText="Mes">

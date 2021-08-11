@@ -21,13 +21,13 @@ public class GeneralesAnio implements Serializable {
 
 	private Integer anio;
 
-	//bi-directional many-to-one association to MandoIntegralPoaMaestro
-	@OneToMany(mappedBy="generalesAnio")
-	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
-
 	//bi-directional many-to-one association to GeneralesCalendario
 	@OneToMany(mappedBy="generalesAnio")
 	private List<GeneralesCalendario> generalesCalendarios;
+
+	//bi-directional many-to-one association to MandoIntegralPoaMaestro
+	@OneToMany(mappedBy="generalesAnio")
+	private List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros;
 
 	public GeneralesAnio() {
 	}
@@ -46,28 +46,6 @@ public class GeneralesAnio implements Serializable {
 
 	public void setAnio(Integer anio) {
 		this.anio = anio;
-	}
-
-	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
-		return this.mandoIntegralPoaMaestros;
-	}
-
-	public void setMandoIntegralPoaMaestros(List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros) {
-		this.mandoIntegralPoaMaestros = mandoIntegralPoaMaestros;
-	}
-
-	public MandoIntegralPoaMaestro addMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
-		getMandoIntegralPoaMaestros().add(mandoIntegralPoaMaestro);
-		mandoIntegralPoaMaestro.setGeneralesAnio(this);
-
-		return mandoIntegralPoaMaestro;
-	}
-
-	public MandoIntegralPoaMaestro removeMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
-		getMandoIntegralPoaMaestros().remove(mandoIntegralPoaMaestro);
-		mandoIntegralPoaMaestro.setGeneralesAnio(null);
-
-		return mandoIntegralPoaMaestro;
 	}
 
 	public List<GeneralesCalendario> getGeneralesCalendarios() {
@@ -90,6 +68,28 @@ public class GeneralesAnio implements Serializable {
 		generalesCalendario.setGeneralesAnio(null);
 
 		return generalesCalendario;
+	}
+
+	public List<MandoIntegralPoaMaestro> getMandoIntegralPoaMaestros() {
+		return this.mandoIntegralPoaMaestros;
+	}
+
+	public void setMandoIntegralPoaMaestros(List<MandoIntegralPoaMaestro> mandoIntegralPoaMaestros) {
+		this.mandoIntegralPoaMaestros = mandoIntegralPoaMaestros;
+	}
+
+	public MandoIntegralPoaMaestro addMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().add(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setGeneralesAnio(this);
+
+		return mandoIntegralPoaMaestro;
+	}
+
+	public MandoIntegralPoaMaestro removeMandoIntegralPoaMaestro(MandoIntegralPoaMaestro mandoIntegralPoaMaestro) {
+		getMandoIntegralPoaMaestros().remove(mandoIntegralPoaMaestro);
+		mandoIntegralPoaMaestro.setGeneralesAnio(null);
+
+		return mandoIntegralPoaMaestro;
 	}
 
 }
