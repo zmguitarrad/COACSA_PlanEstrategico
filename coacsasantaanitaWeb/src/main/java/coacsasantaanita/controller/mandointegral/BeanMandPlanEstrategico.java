@@ -42,7 +42,8 @@ public class BeanMandPlanEstrategico implements Serializable {
 	public String actionCargarPlanEstrategico() {
 		listaPlanEstrategico=mPlanEstrategico.findAllPlanEstrategico();
 		listaPOA =mPlanEstrategico.findAllPoaMaestro();
-		return "POA?faces-redirect=true";
+		
+		return "actividades?faces-redirect=true";
 	}
 	
 	

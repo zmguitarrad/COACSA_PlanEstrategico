@@ -2,7 +2,6 @@ package coacsantaanita.model.core.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -20,10 +19,6 @@ public class SeguridadesUsuarioRole implements Serializable {
 	private Integer secuencial;
 
 	private Boolean activo;
-
-	//bi-directional many-to-one association to ProcesoActividade
-	@OneToMany(mappedBy="seguridadesUsuarioRole")
-	private List<ProcesoActividade> procesoActividades;
 
 	//bi-directional many-to-one association to SeguridadesRole
 	@ManyToOne
@@ -52,28 +47,6 @@ public class SeguridadesUsuarioRole implements Serializable {
 
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
-	}
-
-	public List<ProcesoActividade> getProcesoActividades() {
-		return this.procesoActividades;
-	}
-
-	public void setProcesoActividades(List<ProcesoActividade> procesoActividades) {
-		this.procesoActividades = procesoActividades;
-	}
-
-	public ProcesoActividade addProcesoActividade(ProcesoActividade procesoActividade) {
-		getProcesoActividades().add(procesoActividade);
-		procesoActividade.setSeguridadesUsuarioRole(this);
-
-		return procesoActividade;
-	}
-
-	public ProcesoActividade removeProcesoActividade(ProcesoActividade procesoActividade) {
-		getProcesoActividades().remove(procesoActividade);
-		procesoActividade.setSeguridadesUsuarioRole(null);
-
-		return procesoActividade;
 	}
 
 	public SeguridadesRole getSeguridadesRole() {

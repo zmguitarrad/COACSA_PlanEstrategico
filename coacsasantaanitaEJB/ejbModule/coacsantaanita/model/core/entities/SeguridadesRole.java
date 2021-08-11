@@ -24,6 +24,10 @@ public class SeguridadesRole implements Serializable {
 	@Column(name="nombre_rol")
 	private String nombreRol;
 
+	//bi-directional many-to-one association to ProcesoActividade
+	@OneToMany(mappedBy="seguridadesRole")
+	private List<ProcesoActividade> procesoActividades;
+
 	//bi-directional many-to-one association to SeguridadesUsuarioRole
 	@OneToMany(mappedBy="seguridadesRole")
 	private List<SeguridadesUsuarioRole> seguridadesUsuarioRoles;
@@ -53,6 +57,28 @@ public class SeguridadesRole implements Serializable {
 
 	public void setNombreRol(String nombreRol) {
 		this.nombreRol = nombreRol;
+	}
+
+	public List<ProcesoActividade> getProcesoActividades() {
+		return this.procesoActividades;
+	}
+
+	public void setProcesoActividades(List<ProcesoActividade> procesoActividades) {
+		this.procesoActividades = procesoActividades;
+	}
+
+	public ProcesoActividade addProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().add(procesoActividade);
+		procesoActividade.setSeguridadesRole(this);
+
+		return procesoActividade;
+	}
+
+	public ProcesoActividade removeProcesoActividade(ProcesoActividade procesoActividade) {
+		getProcesoActividades().remove(procesoActividade);
+		procesoActividade.setSeguridadesRole(null);
+
+		return procesoActividade;
 	}
 
 	public List<SeguridadesUsuarioRole> getSeguridadesUsuarioRoles() {

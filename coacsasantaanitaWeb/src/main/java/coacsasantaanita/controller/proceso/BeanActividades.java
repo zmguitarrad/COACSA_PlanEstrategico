@@ -41,7 +41,7 @@ public class BeanActividades implements Serializable {
 		listaIndicadores= mActividaes.findAllIndicadores();
 		listaObjetivo=mActividaes.findAllObjetivo();
 		listaPerspectiva=mActividaes.findAllPerspectiva();
-		return "actividades?faces-redirect=true";
+		return "poas?faces-redirect=true";
 	}
 	public void actionListenerSeleccionarActividad(ProcesoActividade actividade) {
 		actividadSeleccionado=actividade;

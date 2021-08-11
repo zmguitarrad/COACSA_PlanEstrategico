@@ -41,10 +41,10 @@ public class ProcesoActividade implements Serializable {
 	@JoinColumn(name="secuencial_observacion")
 	private ProcesoObservacion procesoObservacion;
 
-	//bi-directional many-to-one association to SeguridadesUsuarioRole
+	//bi-directional many-to-one association to SeguridadesRole
 	@ManyToOne
-	@JoinColumn(name="secuencial_usuario_roles")
-	private SeguridadesUsuarioRole seguridadesUsuarioRole;
+	@JoinColumn(name="secuencial_roles")
+	private SeguridadesRole seguridadesRole;
 
 	public ProcesoActividade() {
 	}
@@ -119,12 +119,12 @@ public class ProcesoActividade implements Serializable {
 		this.procesoObservacion = procesoObservacion;
 	}
 
-	public SeguridadesUsuarioRole getSeguridadesUsuarioRole() {
-		return this.seguridadesUsuarioRole;
+	public SeguridadesRole getSeguridadesRole() {
+		return this.seguridadesRole;
 	}
 
-	public void setSeguridadesUsuarioRole(SeguridadesUsuarioRole seguridadesUsuarioRole) {
-		this.seguridadesUsuarioRole = seguridadesUsuarioRole;
+	public void setSeguridadesRole(SeguridadesRole seguridadesRole) {
+		this.seguridadesRole = seguridadesRole;
 	}
 
 }
