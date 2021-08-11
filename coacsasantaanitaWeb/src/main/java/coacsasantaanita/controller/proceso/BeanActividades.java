@@ -1,4 +1,4 @@
-package coacsasantaanita.controller.actividades;
+package coacsasantaanita.controller.proceso;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,11 +8,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import coacsantaanita.model.actividades.manager.ManagerActividades;
 import coacsantaanita.model.core.entities.IndicadoresIndicador;
 import coacsantaanita.model.core.entities.ProcesoActividade;
 import coacsantaanita.model.core.entities.ProcesoObjetivoPerspectiva;
 import coacsantaanita.model.core.entities.ProcesoPerspectiva;
+import coacsantaanita.model.proceso.manager.ManagerActividades;
 
 @Named
 @SessionScoped

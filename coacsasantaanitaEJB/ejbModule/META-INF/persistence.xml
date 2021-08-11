@@ -4,17 +4,19 @@
 		<jta-data-source>java:/coacsaDS</jta-data-source>
 		<class>coacsantaanita.model.core.entities.AuditoriaBitacora</class>
 		<class>coacsantaanita.model.core.entities.GeneralesAnio</class>
+		<class>coacsantaanita.model.core.entities.GeneralesCalendario</class>
 		<class>coacsantaanita.model.core.entities.GeneralesEstado</class>
-		<class>coacsantaanita.model.core.entities.GeneralesMes</class>
-		<class>coacsantaanita.model.core.entities.IndicadoresIndicadore</class>
-		<class>coacsantaanita.model.core.entities.MandoIntegralDetallePlan</class>
+		<class>coacsantaanita.model.core.entities.IndicadoresIndicador</class>
 		<class>coacsantaanita.model.core.entities.MandoIntegralPlanEstrategico</class>
+		<class>coacsantaanita.model.core.entities.MandoIntegralPoaActividade</class>
 		<class>coacsantaanita.model.core.entities.MandoIntegralPoaMaestro</class>
-		<class>coacsantaanita.model.core.entities.ProcesoActividad</class>
+		<class>coacsantaanita.model.core.entities.ProcesoActividade</class>
 		<class>coacsantaanita.model.core.entities.ProcesoObjetivoPerspectiva</class>
+		<class>coacsantaanita.model.core.entities.ProcesoObservacion</class>
 		<class>coacsantaanita.model.core.entities.ProcesoPerspectiva</class>
 		<class>coacsantaanita.model.core.entities.SeguridadesRole</class>
-		<class>coacsantaanita.model.core.entities.SeguridadesUsuario</class>
 		<class>coacsantaanita.model.core.entities.SeguridadesUsuarioRole</class>
+		<class>coacsantaanita.model.core.entities.SeguridadesUsuario</class>
+
 	</persistence-unit>
 </persistence>

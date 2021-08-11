@@ -22,14 +22,14 @@ public class ProcesoObjetivoPerspectiva implements Serializable {
 	@Column(name="nombre_objetivo_perspectiva")
 	private String nombreObjetivoPerspectiva;
 
+	//bi-directional many-to-one association to IndicadoresIndicador
+	@OneToMany(mappedBy="procesoObjetivoPerspectiva")
+	private List<IndicadoresIndicador> indicadoresIndicadors;
+
 	//bi-directional many-to-one association to ProcesoPerspectiva
 	@ManyToOne
 	@JoinColumn(name="secuencial_perspectiva")
 	private ProcesoPerspectiva procesoPerspectiva;
-
-	//bi-directional many-to-one association to IndicadoresIndicador
-	@OneToMany(mappedBy="procesoObjetivoPerspectiva")
-	private List<IndicadoresIndicador> indicadoresIndicadors;
 
 	public ProcesoObjetivoPerspectiva() {
 	}
@@ -48,14 +48,6 @@ public class ProcesoObjetivoPerspectiva implements Serializable {
 
 	public void setNombreObjetivoPerspectiva(String nombreObjetivoPerspectiva) {
 		this.nombreObjetivoPerspectiva = nombreObjetivoPerspectiva;
-	}
-
-	public ProcesoPerspectiva getProcesoPerspectiva() {
-		return this.procesoPerspectiva;
-	}
-
-	public void setProcesoPerspectiva(ProcesoPerspectiva procesoPerspectiva) {
-		this.procesoPerspectiva = procesoPerspectiva;
 	}
 
 	public List<IndicadoresIndicador> getIndicadoresIndicadors() {
@@ -78,6 +70,14 @@ public class ProcesoObjetivoPerspectiva implements Serializable {
 		indicadoresIndicador.setProcesoObjetivoPerspectiva(null);
 
 		return indicadoresIndicador;
+	}
+
+	public ProcesoPerspectiva getProcesoPerspectiva() {
+		return this.procesoPerspectiva;
+	}
+
+	public void setProcesoPerspectiva(ProcesoPerspectiva procesoPerspectiva) {
+		this.procesoPerspectiva = procesoPerspectiva;
 	}
 
 }

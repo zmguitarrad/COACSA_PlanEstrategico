@@ -41,10 +41,25 @@
 				</p:dataView>
 				<p:panel>
 				<p:panelGrid columns="2">
-					<p:commandButton value="PLAN ESTRATÉGICO"
-						action="#{beanSeguridadesLogin.actionActividades()}" icon=" "></p:commandButton>
-						<p:commandButton value="USUARIOS"
-						action="#{beanSeguridadesLogin.actionActividades()}" icon=" "></p:commandButton>
+			<p:panelGrid columns="2">
+				<h:outputText value="Plan Estratégico:" />
+					<p:selectOneMenu value="#{beanMandPlanEstrategico.secuencialplanestrategico}">
+						<f:selectItem itemLabel="Seleccione..." noSelectionOption="true" />
+						<f:selectItems value="#{beanMandPlanEstrategico.listaPlanEstrategico}"
+							var="plan" itemLabel="#{plan.nombrePlanEstrategico}"
+							itemValue="#{plan.secuencial}"></f:selectItems>
+					</p:selectOneMenu>
+				<h:outputText value="POA:" />
+					<p:selectOneMenu value="#{beanMandPlanEstrategico.secuencialpoa}">
+						<f:selectItem itemLabel="Seleccione..." noSelectionOption="true" />
+						<f:selectItems value="#{beanMandPlanEstrategico.listaPOA}"
+							var="poa" itemLabel="#{poa.nombrePoaMaestro}"
+							itemValue="#{poa.secuencial}"></f:selectItems>
+					</p:selectOneMenu>	
+				<p:commandButton value="Login"
+					action="#{beanMandPlanEstrategico.actionCargarPlanEstrategico()}" icon="pi pi-key"></p:commandButton>	
+				
+			</p:panelGrid>
 						
 				</p:panelGrid>
 			</p:panel>
